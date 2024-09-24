@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 10:11:14 by splattje          #+#    #+#             */
-/*   Updated: 2024/08/28 09:02:04 by splattje         ###   ########.fr       */
+/*   Updated: 2024/09/24 15:00:43 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,14 @@
 # define IMAGE_SIZE_X 11
 # define IMAGE_SIZE_Y 11
 
+enum e_image_index
+{
+	N_WALL = 0,
+	S_WALL = 1,
+	W_WALL = 2,
+	E_WALL = 3
+};
+
 typedef struct s_map_list
 {
 	char				*line;
@@ -44,6 +52,7 @@ typedef struct s_map
 	char		*s_image_location;
 	char		*w_image_location;
 	char		*e_image_location;
+	void		**images;
 	char		*c_color;
 	char		*f_color;
 	int			c_color_hex;
@@ -63,7 +72,7 @@ typedef struct s_data
 }	t_data;
 
 bool		parse_input(char *input, t_data **data);
-void		free_map(t_map *map);
+void		free_map(t_map *map, void *mlx);
 void		free_data(t_data *data);
 t_data		*init_data(void);
 t_map_list	*new_map_list(char *line);
@@ -73,5 +82,6 @@ char		*set_map_info(t_map_list *head, int skip);
 void		free_2d_array(char **array);
 void		get_map_height_width(t_data **data);
 bool		check_map(t_map **map, int height);
+int			set_wall_image(void *mlx, t_map *map);
 
 #endif

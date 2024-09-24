@@ -21,6 +21,7 @@ SRC = main.c \
 		parsing.c \
 		parsing_utils.c \
 		map_checking.c \
+		set_wall_images.c \
 
 OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
 DEP = $(OBJ:.o=.d)

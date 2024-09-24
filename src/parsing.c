@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 14:08:51 by splattje          #+#    #+#             */
-/*   Updated: 2024/09/16 09:18:44 by splattje         ###   ########.fr       */
+/*   Updated: 2024/09/24 15:03:39 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ bool	read_map(int fd, t_data **data)
 		node = new_map_list(trimmed);
 		if (node == NULL)
 			return (perror("Error\nMalloc failed3"),
-				free_map((*data)->map),
+				free_map((*data)->map, (*data)->mlx),
 				false);
 		map_list_add_back(data, node);
 	}
@@ -135,6 +135,8 @@ bool	parse_map(t_data **data)
 	(*data)->map->s_image_location = map_values[1];
 	(*data)->map->w_image_location = map_values[2];
 	(*data)->map->e_image_location = map_values[3];
+	if (set_wall_image((*data)->mlx, (*data)->map) == 1)
+		return (false);
 	(*data)->map->f_color = map_values[4];
 	(*data)->map->c_color = map_values[5];
 	(*data)->map->map = map_array;

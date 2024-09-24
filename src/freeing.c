@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 15:47:53 by splattje          #+#    #+#             */
-/*   Updated: 2024/08/26 11:51:54 by splattje         ###   ########.fr       */
+/*   Updated: 2024/09/24 15:02:58 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@ static void	free_map_list(t_map_list *list)
  * @param map a pointer to the t_map struct
  * @brief frees the map data struct
  */
-void	free_map(t_map *map)
+void	free_map(t_map *map, void *mlx)
 {
+	enum e_image_index	index;
+
 	free_map_list(map->map_list);
 	if (map->map != NULL)
 		free_2d_array(map->map);
@@ -50,6 +52,13 @@ void	free_map(t_map *map)
 		free(map->w_image_location);
 	if (map->e_image_location != NULL)
 		free(map->e_image_location);
+	if (map->images != NULL)
+	{
+		index = -1;
+		while (++index < 4)
+			mlx_destroy_image(mlx, map->images[index]);
+		free(map->images);
+	}
 }
 
 /**
@@ -62,7 +71,7 @@ void	free_data(t_data *data)
 	{
 		if (data->map != NULL)
 		{
-			free_map(data->map);
+			free_map(data->map, data->mlx);
 			free(data->map);
 		}
 		if (data->win != NULL)
