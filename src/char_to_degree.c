@@ -6,21 +6,22 @@
 /*   By: kschelvi <kschelvi@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/09/24 15:59:48 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/09/24 16:32:03 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/09/24 16:38:04 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
+#include "degree.h"
 
-double	char_to_degree(char c)
+t_degree	char_to_degree(char c)
 {
 	if (c == 'N' || c == 'n')
-		return (0);
+		return (int_to_degree(0));
 	if (c == 'S' || c == 's')
-		return (180);
+		return (int_to_degree(180));
 	if (c == 'W' || c == 'w')
-		return (270);
+		return (int_to_degree(270));
 	if (c == 'E' || c == 'e')
-		return (90);
-	return (-1);
+		return (int_to_degree(90));
+	return (int_to_degree(0));
 }

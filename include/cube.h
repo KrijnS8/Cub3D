@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/14 10:11:14 by splattje      #+#    #+#                 */
-/*   Updated: 2024/09/24 16:02:19 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/09/24 16:36:54 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@
 # define IMAGE_SIZE_X 11
 # define IMAGE_SIZE_Y 11
 
+typedef struct s_degree	t_degree;
+
 enum e_image_index
 {
 	N_WALL = 0,
@@ -46,10 +48,10 @@ typedef struct s_map_list
 
 typedef struct s_player
 {
-	int		p_x;
-	int		p_y;
-	char	p_face;
-	double	p_angle;
+	int			p_x;
+	int			p_y;
+	char		p_face;
+	t_degree	p_angle;
 }	t_player;
 
 typedef struct s_map
@@ -90,6 +92,6 @@ void		get_map_height_width(t_data **data);
 bool		check_map(t_map **map, int height);
 int			set_wall_image(void *mlx, t_map *map);
 
-double		char_to_degree(char c);
+t_degree	char_to_degree(char c);
 
 #endif
