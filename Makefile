@@ -1,7 +1,7 @@
 NAME = cube3D
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -MMD -MP -g -I./include
+CFLAGS = -Wall -Werror -Wextra -MMD -MP -g -I./include -lm
 
 MINILIBX_DIR = mlx
 MINILIBX = $(MINILIBX_DIR)/libmlx.a
@@ -24,8 +24,12 @@ SRC = main.c \
 		set_wall_images.c \
 		repl.c \
 		my_error.c \
+		char_to_degree.c \
+		degree/degree_expresions.c \
+		degree/to_degree.c \
 		rendering/frame.c \
 		rendering/ray_casting.c
+		
 
 OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
 DEP = $(OBJ:.o=.d)

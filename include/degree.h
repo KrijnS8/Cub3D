@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   char_to_degree.c                                   :+:    :+:            */
+/*   degree.h                                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: kschelvi <kschelvi@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/09/24 15:59:48 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/09/24 16:32:03 by kschelvi      ########   odam.nl         */
+/*   Created: 2024/09/24 16:08:09 by kschelvi      #+#    #+#                 */
+/*   Updated: 2024/09/24 16:28:34 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube.h"
+#ifndef DEGREE_H
+# define DEGREE_H
 
-double	char_to_degree(char c)
+typedef struct s_degree
 {
-	if (c == 'N' || c == 'n')
-		return (0);
-	if (c == 'S' || c == 's')
-		return (180);
-	if (c == 'W' || c == 'w')
-		return (270);
-	if (c == 'E' || c == 'e')
-		return (90);
-	return (-1);
-}
+	double	value;
+}	t_degree;
+
+t_degree	degree_add(t_degree d1, t_degree d2);
+t_degree	degree_sub(t_degree d1, t_degree d2);
+t_degree	degree_multi(t_degree d1, t_degree d2);
+t_degree	degree_div(t_degree d1, t_degree d2);
+
+t_degree	int_to_degree(int i);
+t_degree	double_to_degree(double d);
+
+#endif

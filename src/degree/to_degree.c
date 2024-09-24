@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   char_to_degree.c                                   :+:    :+:            */
+/*   to_degree.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: kschelvi <kschelvi@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/09/24 15:59:48 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/09/24 16:32:03 by kschelvi      ########   odam.nl         */
+/*   Created: 2024/09/24 16:21:03 by kschelvi      #+#    #+#                 */
+/*   Updated: 2024/09/24 16:31:28 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube.h"
+#include "degree.h"
+#include "../libft/libft.h"
 
-double	char_to_degree(char c)
+#include <math.h>
+
+t_degree	int_to_degree(int i)
 {
-	if (c == 'N' || c == 'n')
-		return (0);
-	if (c == 'S' || c == 's')
-		return (180);
-	if (c == 'W' || c == 'w')
-		return (270);
-	if (c == 'E' || c == 'e')
-		return (90);
-	return (-1);
+	t_degree result;
+
+	result.value = (double)(i % 360);
+	return (result);
 }
+
+t_degree	double_to_degree(double d)
+{
+	t_degree result;
+
+	result.value = fmod(d, 360.0);
+	return (result);
+}
+
