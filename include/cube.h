@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/14 10:11:14 by splattje      #+#    #+#                 */
-/*   Updated: 2024/09/24 15:15:28 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/09/24 16:02:19 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,14 @@ typedef struct s_map_list
 	struct s_map_list	*next;
 }	t_map_list;
 
+typedef struct s_player
+{
+	int		p_x;
+	int		p_y;
+	char	p_face;
+	double	p_angle;
+}	t_player;
+
 typedef struct s_map
 {
 	t_map_list	*map_list;
@@ -57,9 +65,7 @@ typedef struct s_map
 	char		*f_color;
 	int			c_color_hex;
 	int			f_color_hex;
-	int			p_x;
-	int			p_y;
-	char		p_face;
+	t_player	player;
 }	t_map;
 
 typedef struct s_data
@@ -83,5 +89,7 @@ void		free_2d_array(char **array);
 void		get_map_height_width(t_data **data);
 bool		check_map(t_map **map, int height);
 int			set_wall_image(void *mlx, t_map *map);
+
+double		char_to_degree(char c);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/08/15 15:35:17 by splattje      #+#    #+#                 */
-/*   Updated: 2024/09/24 15:15:10 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/09/24 15:20:33 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ static t_map	*init_map(void)
 	map->images = NULL;
 	map->map = NULL;
 	map->map_list = NULL;
-	map->p_face = 0;
-	map->p_x = 0;
-	map->p_y = 0;
+	map->player.p_face = 0;
+	map->player.p_x = 0;
+	map->player.p_y = 0;
 	return (map);
 }
 

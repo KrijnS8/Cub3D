@@ -6,7 +6,7 @@
 /*   By: kschelvi <kschelvi@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/09/24 13:43:45 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/09/24 15:03:29 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/09/24 15:42:39 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,8 @@ t_error	build_frame(t_data *data)
 	void	*frame;
 	t_ray	rays[NUM_RAYS];
 
-	//test variable. change for t_player struct
-	double p_face = 0;
-
 	frame = mlx_new_image(data->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
-	init_rays(rays, p_face);
+	init_rays(rays, data->map->player.p_face);
 	for (int i = 0; i < NUM_RAYS; i++)
 	{
 		

@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/08/22 09:51:23 by splattje      #+#    #+#                 */
-/*   Updated: 2024/09/24 13:45:10 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/09/24 16:02:44 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,16 @@ static bool	player_check(char **map_array, t_map **map)
 				|| map_array[line][index] == 'E'
 				|| map_array[line][index] == 'W')
 			{
-				if ((*map)->p_face != 0)
+				if ((*map)->player.p_face != 0)
 					return (false);
-				(*map)->p_face = map_array[line][index];
-				(*map)->p_x = index;
-				(*map)->p_y = line;
+				(*map)->player.p_face = map_array[line][index];
+				(*map)->player.p_angle = char_to_degree((*map)->player.p_face);
+				(*map)->player.p_x = index;
+				(*map)->player.p_y = line;
 			}
 		}
 	}
-	if ((*map)->p_face != 0)
+	if ((*map)->player.p_face != 0)
 		return (true);
 	return (false);
 }
@@ -151,7 +152,7 @@ bool	check_map(t_map **map, int height)
 
 	if (!player_check((*map)->map, map))
 		return (false);
-	(*map)->map[(*map)->p_y][(*map)->p_x] = '0';
+	(*map)->map[(*map)->player.p_y][(*map)->player.p_x] = '0';
 	y = -1;
 	while ((*map)->map[++y] != NULL)
 	{
@@ -162,7 +163,7 @@ bool	check_map(t_map **map, int height)
 				return (false);
 		}
 	}
-	(*map)->map[(*map)->p_y][(*map)->p_x] = (*map)->p_face;
+	(*map)->map[(*map)->player.p_y][(*map)->player.p_x] = (*map)->player.p_face;
 	if (!check_wall_file(map))
 		return (false);
 	(*map)->c_color_hex = floor_ceiling_rgb((*map)->c_color);
