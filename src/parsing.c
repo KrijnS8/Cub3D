@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/15 14:08:51 by splattje          #+#    #+#             */
-/*   Updated: 2024/09/24 15:03:39 by splattje         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   parsing.c                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: splattje <splattje@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/08/15 14:08:51 by splattje      #+#    #+#                 */
+/*   Updated: 2024/09/24 15:14:37 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cube.h"
+#include "cube.h"
 
 /**
  * @param fd the file descripter of the file being read

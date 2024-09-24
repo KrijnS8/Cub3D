@@ -1,16 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/14 10:10:37 by splattje          #+#    #+#             */
-/*   Updated: 2024/09/24 14:42:38 by splattje         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   main.c                                             :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: splattje <splattje@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/05/14 10:10:37 by splattje      #+#    #+#                 */
+/*   Updated: 2024/09/24 15:15:50 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cube.h"
+#include "cube.h"
+#include "rendering.h"
+#include "my_error.h"
+#include <sys/wait.h>
 
 int	main(int argc, char **argv)
 {
@@ -26,8 +29,9 @@ int	main(int argc, char **argv)
 		return (perror("Error\nMLX failed\n"), free_data(data), 1);
 	if (!parse_input(argv[1], &data))
 		return (ft_putendl_fd("parsing error", 2), free_data(data), 1);
-	data->win = mlx_new_window(data->mlx, data->width, data->height, "Cube");
+	data->win = mlx_new_window(data->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "Cube");
 	if (data->win == NULL)
 		return (perror("Error\nMXL Window failed\n"), free_data(data), 1);
+	build_frame(data);
 	free_data(data);
 }

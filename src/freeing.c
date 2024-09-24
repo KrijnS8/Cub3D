@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   freeing.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/15 15:47:53 by splattje          #+#    #+#             */
-/*   Updated: 2024/09/24 15:02:58 by splattje         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   freeing.c                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: splattje <splattje@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/08/15 15:47:53 by splattje      #+#    #+#                 */
+/*   Updated: 2024/09/24 15:15:13 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cube.h"
+#include "cube.h"
 
 /**
  * @param list the linked list with of the map data

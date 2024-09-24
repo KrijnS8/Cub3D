@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parsing_utils.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/19 10:18:04 by splattje          #+#    #+#             */
-/*   Updated: 2024/08/26 09:20:38 by splattje         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   parsing_utils.c                                    :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: splattje <splattje@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/08/19 10:18:04 by splattje      #+#    #+#                 */
+/*   Updated: 2024/09/24 13:45:19 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cube.h"
+#include "cube.h"
 
 /**
  * @param data a double pointer to the main data struct (t_data)

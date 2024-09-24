@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   map_checking.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/22 09:51:23 by splattje          #+#    #+#             */
-/*   Updated: 2024/09/16 09:14:30 by splattje         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   map_checking.c                                     :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: splattje <splattje@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/08/22 09:51:23 by splattje      #+#    #+#                 */
+/*   Updated: 2024/09/24 13:45:10 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cube.h"
+#include "cube.h"
 
 /**
  * @param map a 2d char array of the map

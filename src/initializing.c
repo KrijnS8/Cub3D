@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   initializing.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/15 15:35:17 by splattje          #+#    #+#             */
-/*   Updated: 2024/09/24 14:21:53 by splattje         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   initializing.c                                     :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: splattje <splattje@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/08/15 15:35:17 by splattje      #+#    #+#                 */
+/*   Updated: 2024/09/24 15:15:10 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cube.h"
+#include "cube.h"
 
 /**
  * @return a pointer to the t_map struct
