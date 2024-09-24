@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   initializing.c                                     :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: splattje <splattje@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/08/15 15:35:17 by splattje      #+#    #+#                 */
-/*   Updated: 2024/09/24 15:20:33 by kschelvi      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   initializing.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/15 15:35:17 by splattje          #+#    #+#             */
+/*   Updated: 2024/09/24 16:30:05 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ static t_map	*init_map(void)
 	map->player.p_face = 0;
 	map->player.p_x = 0;
 	map->player.p_y = 0;
+	map->player.move_fb = 0;
+	map->player.move_lr = 0;
 	return (map);
 }
 

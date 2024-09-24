@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: splattje <splattje@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/05/14 10:10:37 by splattje      #+#    #+#                 */
-/*   Updated: 2024/09/24 15:15:50 by kschelvi      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/14 10:10:37 by splattje          #+#    #+#             */
+/*   Updated: 2024/09/24 16:24:34 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 #include "rendering.h"
 #include "my_error.h"
+#include "gameplay.h"
 #include <sys/wait.h>
 
 int	main(int argc, char **argv)
@@ -32,6 +33,11 @@ int	main(int argc, char **argv)
 	data->win = mlx_new_window(data->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "Cube");
 	if (data->win == NULL)
 		return (perror("Error\nMXL Window failed\n"), free_data(data), 1);
-	build_frame(data);
+	//build_frame(data);
+	mlx_do_key_autorepeatoff(data->mlx);
+	mlx_hook(data->win, KeyPress, KeyPressMask, &handle_keypress, data);
+	mlx_hook(data->win, KeyRelease, KeyReleaseMask, &handle_release, data);
+	mlx_hook(data->win, DestroyNotify, StructureNotifyMask, &destroy_hook_function, data);
+	mlx_loop(data->mlx);
 	free_data(data);
 }

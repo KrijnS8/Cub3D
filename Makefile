@@ -30,7 +30,9 @@ SRC = main.c \
 		degree/degree_expresions.c \
 		degree/to_degree.c \
 		rendering/frame.c \
-		rendering/ray_casting.c
+		rendering/ray_casting.c \
+		gameplay/key_hooks.c \
+		char_to_degree.c
 		
 
 OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)

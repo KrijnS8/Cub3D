@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   char_to_degree.c                                   :+:      :+:    :+:   */
+/*   gameplay.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/24 15:59:48 by kschelvi          #+#    #+#             */
-/*   Updated: 2024/09/24 16:48:22 by splattje         ###   ########.fr       */
+/*   Created: 2024/09/24 15:40:27 by splattje          #+#    #+#             */
+/*   Updated: 2024/09/24 16:23:21 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube.h"
-#include "degree.h"
+#ifndef GAMEPLAY_H
+# define GAMEPLAY_H
 
-t_degree	char_to_degree(char c)
-{
-	if (c == 'N' || c == 'n')
-		return (int_to_degree(0));
-	if (c == 'S' || c == 's')
-		return (int_to_degree(180));
-	if (c == 'W' || c == 'w')
-		return (int_to_degree(270));
-	if (c == 'E' || c == 'e')
-		return (int_to_degree(90));
-	return (int_to_degree(0));
-}
+typedef struct s_data	t_data;
+
+int	handle_keypress(int keysym, t_data *data);
+int	destroy_hook_function(t_data *data);
+int handle_release(int keysym, t_data *data);
+
+#endif
