@@ -1,11 +1,13 @@
 NAME = cube3D
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -MMD -MP -g -I./include -lm
+CFLAGS = -Wall -Werror -Wextra -MMD -MP -g -I./include
 
 MINILIBX_DIR = mlx
 MINILIBX = $(MINILIBX_DIR)/libmlx.a
 MLXFLAGS = -L $(MINILIBX_DIR) -lmlx -Ilmlx -lXext -lX11 -I$(MINILIBX_DIR)
+
+MATHFLAGS = -lm
 
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
@@ -44,7 +46,7 @@ $(MINILIBX):
 	@make -C $(MINILIBX_DIR)
 
 $(NAME): $(OBJ) $(LIBFT) $(MINILIBX)
-	@$(CC) $(CFLAGS) $(LIBFT) $(MINILIBX) $(MLXFLAGS) -o $@ $^
+	@$(CC) $(CFLAGS) $(LIBFT) $(MINILIBX) $(MLXFLAGS) -o $@ $^ $(MATHFLAGS)
 	@echo Done compiling!
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c

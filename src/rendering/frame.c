@@ -6,7 +6,7 @@
 /*   By: kschelvi <kschelvi@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/09/24 13:43:45 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/09/24 15:42:39 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/09/24 16:44:12 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_error	build_frame(t_data *data)
 	init_rays(rays, data->map->player.p_face);
 	for (int i = 0; i < NUM_RAYS; i++)
 	{
-		
+		ft_printf("test\n");
 	}
 	return (ERR_OK);
 }

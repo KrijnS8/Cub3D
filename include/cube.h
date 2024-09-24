@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/14 10:11:14 by splattje      #+#    #+#                 */
-/*   Updated: 2024/09/24 16:36:54 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/09/24 16:43:34 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define IMAGE_SIZE_X 11
 # define IMAGE_SIZE_Y 11
 
-typedef struct s_degree	t_degree;
+# include "degree.h"
 
 enum e_image_index
 {
