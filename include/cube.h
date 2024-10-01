@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cube.h                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/14 10:11:14 by splattje          #+#    #+#             */
-/*   Updated: 2024/09/30 09:27:45 by splattje         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   cube.h                                             :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: splattje <splattje@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/05/14 10:11:14 by splattje      #+#    #+#                 */
+/*   Updated: 2024/10/01 13:54:55 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ typedef struct s_map_list
 
 typedef struct s_player
 {
-	int			p_x;
-	int			p_y;
+	double			p_x;
+	double			p_y;
 	char		p_face;
 	t_degree	p_angle;
 	int			move_fb;

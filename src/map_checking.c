@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/08/22 09:51:23 by splattje      #+#    #+#                 */
-/*   Updated: 2024/09/24 16:02:44 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/10/01 13:56:20 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,7 @@ bool	check_map(t_map **map, int height)
 
 	if (!player_check((*map)->map, map))
 		return (false);
-	(*map)->map[(*map)->player.p_y][(*map)->player.p_x] = '0';
+	(*map)->map[(int)(*map)->player.p_y][(int)(*map)->player.p_x] = '0';
 	y = -1;
 	while ((*map)->map[++y] != NULL)
 	{
@@ -163,7 +163,7 @@ bool	check_map(t_map **map, int height)
 				return (false);
 		}
 	}
-	(*map)->map[(*map)->player.p_y][(*map)->player.p_x] = (*map)->player.p_face;
+	(*map)->map[(int)(*map)->player.p_y][(int)(*map)->player.p_x] = (*map)->player.p_face;
 	if (!check_wall_file(map))
 		return (false);
 	(*map)->c_color_hex = floor_ceiling_rgb((*map)->c_color);

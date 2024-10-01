@@ -6,7 +6,7 @@
 /*   By: kschelvi <kschelvi@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/09/24 16:08:09 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/09/24 16:28:34 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/10/01 13:39:21 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,7 @@ t_degree	degree_div(t_degree d1, t_degree d2);
 
 t_degree	int_to_degree(int i);
 t_degree	double_to_degree(double d);
+
+double		degree_to_radian(t_degree d);
 
 #endif
