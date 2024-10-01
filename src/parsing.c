@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   parsing.c                                          :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: splattje <splattje@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/08/15 14:08:51 by splattje      #+#    #+#                 */
-/*   Updated: 2024/09/24 15:14:37 by kschelvi      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/15 14:08:51 by splattje          #+#    #+#             */
+/*   Updated: 2024/09/26 09:27:25 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,7 +176,7 @@ bool	parse_input(char *input, t_data **data)
 	close(fd);
 	if (!parse_map(data))
 		return (false);
-	if (!check_map(&(*data)->map, (*data)->height / IMAGE_SIZE_Y))
+	if (!check_map(&(*data)->map, (*data)->height))
 		return (false);
 	return (true);
 }

@@ -6,76 +6,72 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 15:27:09 by splattje          #+#    #+#             */
-/*   Updated: 2024/09/24 17:21:06 by splattje         ###   ########.fr       */
+/*   Updated: 2024/09/30 13:57:08 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
-#include <sys/time.h>
+#include "gameplay.h"
 
-static void move_camera(t_degree degree, bool flag, t_map *map)
+static void	move_camera(t_degree degree, t_map *map)
 {
-	static bool check;
+	map->player.p_angle = degree_add(map->player.p_angle, degree);
+	printf("camera angle is %f\n", map->player.p_angle.value);
+}
 
-	check = flag;
-	while(flag)
-	{
-		map->player.p_angle = degree_add(map->player.p_angle, degree);
-		printf("degree is %f\n", map->player.p_angle.value);
-	}
+static void	do_player_movement(t_data *data)
+{
+	(void)data;
 }
 
 int	handle_keypress(int keysym, t_data *data)
 {
-	t_degree	degree;
-
 	if (keysym == XK_Escape)
-	{
-		free_data(data);
-		exit(0);
-	}
-	if (keysym == XK_Left || keysym == XK_Right)
+		return (des_func(data));
+	else if (keysym == XK_Left || keysym == XK_Right)
 	{
 		if (keysym == XK_Left)
-			degree = int_to_degree(1);
+			move_camera(int_to_degree(-1), data->map);
 		if (keysym == XK_Right)
-			degree = int_to_degree(-1);
-		move_camera(degree, true, data->map);
+			move_camera(int_to_degree(1), data->map);
 	}
-	if (keysym == XK_w)
-		data->map->player.move_fb += 30;
-	if (keysym == XK_s)
-		data->map->player.move_fb += -30;
-	if (keysym == XK_d)
-		data->map->player.move_lr += 30;
-	if (keysym == XK_a)
-		data->map->player.move_lr += -30;
-	return (0);
-}
-
-int handle_release(int keysym, t_data *data)
-{
-	t_degree	degree;
-
-	(void)data;
-	if (keysym == XK_Left || keysym == XK_Right)
+	else
 	{
-		degree = int_to_degree(0);
-		move_camera(degree, false, data->map);
+		if (keysym == XK_w)
+			data->map->player.move_fb += -30;
+		if (keysym == XK_s)
+			data->map->player.move_fb += 30;
+		if (keysym == XK_d)
+			data->map->player.move_lr += 30;
+		if (keysym == XK_a)
+			data->map->player.move_lr += -30;
+		do_player_movement(data);
 	}
-	if (keysym == XK_w)
-		data->map->player.move_fb -= 30;
-	if (keysym == XK_s)
-		data->map->player.move_fb -= -30;
-	if (keysym == XK_d)
-		data->map->player.move_lr -= 30;
-	if (keysym == XK_a)
-		data->map->player.move_lr -= -30;
 	return (0);
 }
 
-int	destroy_hook_function(t_data *data)
+int	handle_release(int keysym, t_data *data)
 {
+	if (keysym == XK_Left || keysym == XK_Right)
+		move_camera(int_to_degree(0), data->map);
+	else
+	{
+		if (keysym == XK_w)
+			data->map->player.move_fb -= -30;
+		if (keysym == XK_s)
+			data->map->player.move_fb -= 30;
+		if (keysym == XK_d)
+			data->map->player.move_lr -= 30;
+		if (keysym == XK_a)
+			data->map->player.move_lr -= -30;
+		do_player_movement(data);
+	}
+	return (0);
+}
+
+int	des_func(t_data *data)
+{
+	mlx_do_key_autorepeaton(data->mlx);
 	free_data(data);
 	exit(0);
 	return (0);

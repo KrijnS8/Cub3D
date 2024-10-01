@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 10:11:14 by splattje          #+#    #+#             */
-/*   Updated: 2024/09/24 16:55:17 by splattje         ###   ########.fr       */
+/*   Updated: 2024/09/30 09:27:45 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,15 @@
 # include <X11/keysym.h>
 # include <stdbool.h>
 
-# define IMAGE_SIZE_X 11
-# define IMAGE_SIZE_Y 11
-
 # include "degree.h"
 
-enum e_image_index
+typedef enum e_image_index
 {
 	N_WALL = 0,
 	S_WALL = 1,
 	W_WALL = 2,
 	E_WALL = 3
-};
+}	t_image_index;
 
 typedef struct s_map_list
 {

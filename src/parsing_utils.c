@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   parsing_utils.c                                    :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: splattje <splattje@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/08/19 10:18:04 by splattje      #+#    #+#                 */
-/*   Updated: 2024/09/24 13:45:19 by kschelvi      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   parsing_utils.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 10:18:04 by splattje          #+#    #+#             */
+/*   Updated: 2024/09/26 09:26:49 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	get_map_height_width(t_data **data)
 		if (size > width)
 			width = size;
 	}
-	(*data)->height = height * IMAGE_SIZE_Y;
-	(*data)->width = width * IMAGE_SIZE_X;
+	(*data)->height = height;
+	(*data)->width = width;
 }
 
 /**

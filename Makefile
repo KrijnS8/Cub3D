@@ -32,6 +32,7 @@ SRC = main.c \
 		rendering/frame.c \
 		rendering/ray_casting.c \
 		gameplay/key_hooks.c \
+		gameplay/get_time.c \
 		char_to_degree.c
 		
 

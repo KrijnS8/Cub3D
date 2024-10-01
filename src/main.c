@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 10:10:37 by splattje          #+#    #+#             */
-/*   Updated: 2024/09/24 16:24:34 by splattje         ###   ########.fr       */
+/*   Updated: 2024/09/30 08:49:41 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ int	main(int argc, char **argv)
 	mlx_do_key_autorepeatoff(data->mlx);
 	mlx_hook(data->win, KeyPress, KeyPressMask, &handle_keypress, data);
 	mlx_hook(data->win, KeyRelease, KeyReleaseMask, &handle_release, data);
-	mlx_hook(data->win, DestroyNotify, StructureNotifyMask, &destroy_hook_function, data);
+	mlx_hook(data->win, DestroyNotify, StructureNotifyMask, &des_func, data);
 	mlx_loop(data->mlx);
+	mlx_do_key_autorepeaton(data->mlx);
 	free_data(data);
 }
