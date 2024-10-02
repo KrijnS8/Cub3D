@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 15:27:09 by splattje          #+#    #+#             */
-/*   Updated: 2024/10/02 09:49:48 by splattje         ###   ########.fr       */
+/*   Updated: 2024/10/02 12:56:43 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,71 +14,33 @@
 #include "gameplay.h"
 #include "rendering.h"
 
-t_img	new_img(t_data* data)
-{
-	t_img	image;
-	image.img_ptr = data->map->images[N_WALL];
-	image.addr = mlx_get_data_addr(image.img_ptr, &(image.bpp),
-		&(image.line_len), &image.endian);
-	image.w = 254;
-	image.h = 254;
-	return (image);
-}
+// void	put_pixel_img(t_img img, int x, int y, int color)
+// {
+// 	char	*dst;
 
-void	put_pixel_img(t_img img, int x, int y, int color)
-{
-	char	*dst;
+// 	if (color == (int)0xFF000000)
+// 		return ;
+// 	if (x >= 0 && y >= 0 && x < img.w && y < img.h)
+// 	{
+// 		dst = img.addr + (y * img.line_len + x * (img.bpp / 8));
+// 		*(unsigned int *) dst = color;
+// 	}
+// }
 
-	if (color == (int)0xFF000000)
-		return ;
-	if (x >= 0 && y >= 0 && x < img.w && y < img.h)
-	{
-		dst = img.addr + (y * img.line_len + x * (img.bpp / 8));
-		*(unsigned int *) dst = color;
-	}
-}
-
-unsigned int	get_pixel_img(t_img img, int x, int y)
-{
-	return (*(unsigned int *)((img.addr
-		+ (y * img.line_len) + (x * img.bpp / 8))));
-}
-
-void	update_screen(t_data *data, t_ray ray)
-{
-	int	ray_number;
-	int	x;
-	int	y;
-	int	next;
-	t_img image;
-
-	ray_number = -1;
-	while (++ray_number < NUM_RAYS)
-	{
-		x = ray_number * (NUM_RAYS);
-		y = -1;
-		image = new_img(data);
-		next = (ray_number + 1) * NUM_RAYS;
-		while (++y < ray.line.height)
-			while (x < next)
-				put_pixel_img(image, x++, y, data->map->c_color_hex);
-		while (++y < SCREEN_HEIGHT)
-			while (x < next)
-				put_pixel_img(image, x++, y, data->map->c_color_hex);
-		mlx_put_image_to_window(data->mlx, data->win, image.img_ptr, 0, 0);
-	}
-}
+// unsigned int	get_pixel_img(t_img img, int x, int y)
+// {
+// 	return (*(unsigned int *)((img.addr
+// 			+ (y * img.line_len) + (x * img.bpp / 8))));
+// }
 
 static void	move_camera(t_degree degree, t_data *data)
 {
 	data->map->player.p_angle = degree_add(data->map->player.p_angle, degree);
-	//printf("camera angle is %f\n", map->player.p_angle.value);
-	update_screen(data);
 }
 
 static void	do_player_movement(t_data *data)
 {
-	update_screen(data);
+	(void)data;
 }
 
 int	handle_keypress(int keysym, t_data *data)
@@ -95,13 +57,13 @@ int	handle_keypress(int keysym, t_data *data)
 	else
 	{
 		if (keysym == XK_w)
-			data->map->player.move_fb += -30;
+			data->map->player.move_fb = -1;
 		if (keysym == XK_s)
-			data->map->player.move_fb += 30;
+			data->map->player.move_fb = 1;
 		if (keysym == XK_d)
-			data->map->player.move_lr += 30;
+			data->map->player.move_lr = 1;
 		if (keysym == XK_a)
-			data->map->player.move_lr += -30;
+			data->map->player.move_lr = -1;
 		do_player_movement(data);
 	}
 	return (0);
@@ -113,14 +75,10 @@ int	handle_release(int keysym, t_data *data)
 		move_camera(int_to_degree(0), data);
 	else
 	{
-		if (keysym == XK_w)
-			data->map->player.move_fb -= -30;
-		if (keysym == XK_s)
-			data->map->player.move_fb -= 30;
-		if (keysym == XK_d)
-			data->map->player.move_lr -= 30;
-		if (keysym == XK_a)
-			data->map->player.move_lr -= -30;
+		if (keysym == XK_w || keysym == XK_s)
+			data->map->player.move_fb = 0;
+		if (keysym == XK_d || keysym == XK_a)
+			data->map->player.move_lr = 0;
 		do_player_movement(data);
 	}
 	return (0);

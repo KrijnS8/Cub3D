@@ -1,19 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   frame.c                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: kschelvi <kschelvi@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/09/24 13:43:45 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/10/01 14:57:16 by kschelvi      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   frame.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/24 13:43:45 by kschelvi          #+#    #+#             */
+/*   Updated: 2024/10/02 13:30:34 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rendering.h"
 #include "my_error.h"
+#include "gameplay.h"
 
 #include "cube.h"
+
+void	update_screen(t_data *data, t_ray *rays)
+{
+	int		ray_number;
+	int		x;
+	int		y;
+	int		next;
+
+	ray_number = -1;
+	while (++ray_number <= NUM_RAYS)
+	{
+		x = ray_number * (SCREEN_WIDTH / NUM_RAYS);
+		y = -1;
+		next = (ray_number + 1) * (SCREEN_WIDTH / NUM_RAYS);
+		while (++y < rays[ray_number].line.height && y <= (SCREEN_HEIGHT - 127))
+		{
+			while (x < next)
+				mlx_pixel_put(data->mlx, data->win, x++, y,
+					data->map->c_color_hex);
+			x = ray_number * (SCREEN_WIDTH / NUM_RAYS);
+		}
+		mlx_put_image_to_window(data->mlx, data->win, data->map->images[N_WALL], x, y);
+		y += 254;
+		while (++y <= (SCREEN_WIDTH))
+		{
+			while (x < next)
+				mlx_pixel_put(data->mlx, data->win, x++, y,
+					data->map->f_color_hex);
+			x = ray_number * (SCREEN_WIDTH / NUM_RAYS);
+		}
+	}
+}
 
 void	init_rays(t_ray *rays, double p_angle)
 {
@@ -47,8 +80,9 @@ t_error	build_frame(t_data *data)
 	init_rays(rays, data->map->player.p_angle.value);
 	for (int i = 0; i < NUM_RAYS; i++)
 	{
-		printf("%f\n", rays[i].degree.value);
+		//printf("%f\n", rays[i].degree.value);
 		cast_ray(data, &(rays[i]));
 	}
+	update_screen(data, rays);
 	return (ERR_OK);
 }
