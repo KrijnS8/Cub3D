@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   ray_casting.c                                      :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: kschelvi <kschelvi@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/09/24 13:35:00 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/10/01 16:57:08 by kschelvi      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   ray_casting.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/24 13:35:00 by kschelvi          #+#    #+#             */
+/*   Updated: 2024/10/02 08:44:23 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,21 +34,22 @@ t_dda_config	dda_setup(t_data *data, t_dda_config *dda, t_ray *ray)
 	if (dda->dir.x >= 0)
 		dda->step_x = 1;
 	else
-		dda->step_x - -1;
+		dda->step_x = -1;
 	if (dda->dir.y >= 0)
 		dda->step_y = 1;
 	else
-		dda->step_y - -1;
-	if (dda->dir.x = 0)
+		dda->step_y = -1;
+	if (dda->dir.x == 0)
 		dda->side_dist.x = 1e30;
 	else
 		dda->side_dist.x = fabs(1.0 / dda->dir.x);
-	if (dda->dir.y = 0)
+	if (dda->dir.y == 0)
 		dda->side_dist.y = 1e30;
 	else
 		dda->side_dist.y = fabs(1.0 / dda->dir.y);
 	dda->delta.x = dda->step_x * dda->side_dist.x;
 	dda->delta.y = dda->step_y * dda->side_dist.y;
+	return (*dda);
 }
 
 t_error cast_ray(t_data *data, t_ray *ray)
@@ -62,7 +63,7 @@ t_error cast_ray(t_data *data, t_ray *ray)
 	map_y = (int)dda.start.y;
 	while (map_x >= 0 && map_x < data->width && map_y >= 0 && map_y < data->height)
 	{
-		if (data->map->map[map_x][map_y] == 1)
+		if (data->map->map[map_y][map_x] == 1)
 		{
 			dda.distance = sqrt((dda.pos.x - dda.start.x) * (dda.pos.x - dda.start.x) + (dda.pos.y - dda.start.y) * (dda.pos.y - dda.start.y));
 			ray->distance = dda.distance;
