@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ray_casting.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/24 13:35:00 by kschelvi          #+#    #+#             */
-/*   Updated: 2024/10/02 08:44:23 by splattje         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   ray_casting.c                                      :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: splattje <splattje@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/09/24 13:35:00 by kschelvi      #+#    #+#                 */
+/*   Updated: 2024/10/02 12:55:23 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ t_error cast_ray(t_data *data, t_ray *ray)
 		{
 			dda.distance = sqrt((dda.pos.x - dda.start.x) * (dda.pos.x - dda.start.x) + (dda.pos.y - dda.start.y) * (dda.pos.y - dda.start.y));
 			ray->distance = dda.distance;
+			ray->line.height = (int)(SCREEN_HEIGHT / ray->distance);
 			break ;
 		}
 		if (dda.delta.x < dda.delta.y)
