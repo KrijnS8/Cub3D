@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   ray_casting.c                                      :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: splattje <splattje@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/09/24 13:35:00 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/10/02 12:55:23 by kschelvi      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   ray_casting.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/24 13:35:00 by kschelvi          #+#    #+#             */
+/*   Updated: 2024/10/02 13:52:04 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ t_error cast_ray(t_data *data, t_ray *ray)
 	map_y = (int)dda.start.y;
 	while (map_x >= 0 && map_x < data->width && map_y >= 0 && map_y < data->height)
 	{
-		if (data->map->map[map_y][map_x] == 1)
+		if (data->map->map[map_y][map_x] == '1')
 		{
 			dda.distance = sqrt((dda.pos.x - dda.start.x) * (dda.pos.x - dda.start.x) + (dda.pos.y - dda.start.y) * (dda.pos.y - dda.start.y));
 			ray->distance = dda.distance;

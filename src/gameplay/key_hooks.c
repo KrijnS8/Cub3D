@@ -6,32 +6,13 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 15:27:09 by splattje          #+#    #+#             */
-/*   Updated: 2024/10/02 12:56:43 by splattje         ###   ########.fr       */
+/*   Updated: 2024/10/02 14:21:20 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 #include "gameplay.h"
 #include "rendering.h"
-
-// void	put_pixel_img(t_img img, int x, int y, int color)
-// {
-// 	char	*dst;
-
-// 	if (color == (int)0xFF000000)
-// 		return ;
-// 	if (x >= 0 && y >= 0 && x < img.w && y < img.h)
-// 	{
-// 		dst = img.addr + (y * img.line_len + x * (img.bpp / 8));
-// 		*(unsigned int *) dst = color;
-// 	}
-// }
-
-// unsigned int	get_pixel_img(t_img img, int x, int y)
-// {
-// 	return (*(unsigned int *)((img.addr
-// 			+ (y * img.line_len) + (x * img.bpp / 8))));
-// }
 
 static void	move_camera(t_degree degree, t_data *data)
 {

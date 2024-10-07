@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   map_checking.c                                     :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: splattje <splattje@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/08/22 09:51:23 by splattje      #+#    #+#                 */
-/*   Updated: 2024/10/01 13:56:20 by kschelvi      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   map_checking.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/22 09:51:23 by splattje          #+#    #+#             */
+/*   Updated: 2024/10/07 13:03:33 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ static int	floor_ceiling_rgb(char *rgb_string)
  * @return true if only one player is in the map and the map has a valid floor
  * @brief checks if the map contains one player and if the floor is valid
  */
-bool	check_map(t_map **map, int height)
+bool	check_map(t_map **map, int height, t_data *data)
 {
 	int		y;
 	size_t	x;
@@ -163,10 +163,13 @@ bool	check_map(t_map **map, int height)
 				return (false);
 		}
 	}
-	(*map)->map[(int)(*map)->player.p_y][(int)(*map)->player.p_x] = (*map)->player.p_face;
+	(*map)->map[(int)(*map)->player.p_y][(int)(*map)->player.p_x]
+		= (*map)->player.p_face;
 	if (!check_wall_file(map))
 		return (false);
 	(*map)->c_color_hex = floor_ceiling_rgb((*map)->c_color);
 	(*map)->f_color_hex = floor_ceiling_rgb((*map)->f_color);
+	if (!set_images(&data))
+		return (false);
 	return (true);
 }

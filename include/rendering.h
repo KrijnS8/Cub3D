@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   rendering.h                                        :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: kschelvi <kschelvi@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/09/24 13:31:27 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/10/01 16:33:50 by kschelvi      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   rendering.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/24 13:31:27 by kschelvi          #+#    #+#             */
+/*   Updated: 2024/10/07 13:10:11 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@
 
 # include "degree.h"
 
-#ifndef CUBE_H
-# include "cube.h"
-#endif
+# ifndef CUBE_H
+#  include "cube.h"
+# endif
 
 typedef enum e_error	t_error;
 typedef struct s_data	t_data;
@@ -71,7 +71,7 @@ typedef struct s_frame
 t_error	build_frame(t_data *data);
 
 // Ray casting functions
-t_error cast_ray(t_data *data, t_ray *ray);
+t_error	cast_ray(t_data *data, t_ray *ray);
 
 // Point functions
 t_point	create_point(double x, double y);

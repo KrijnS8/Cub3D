@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 14:08:51 by splattje          #+#    #+#             */
-/*   Updated: 2024/09/26 09:27:25 by splattje         ###   ########.fr       */
+/*   Updated: 2024/10/07 13:11:23 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ bool	read_map(int fd, t_data **data)
 		node = new_map_list(trimmed);
 		if (node == NULL)
 			return (perror("Error\nMalloc failed3"),
-				free_map((*data)->map, (*data)->mlx),
+				free_map((*data)->map),
 				false);
 		map_list_add_back(data, node);
 	}
@@ -124,6 +124,7 @@ bool	parse_map(t_data **data)
 {
 	char	**map_array;
 	char	**map_values;
+	int		index;
 
 	map_values = set_map_values(((*data)->map->map_list), -1);
 	if (map_values == NULL)
@@ -135,10 +136,9 @@ bool	parse_map(t_data **data)
 	(*data)->map->s_image_location = map_values[1];
 	(*data)->map->w_image_location = map_values[2];
 	(*data)->map->e_image_location = map_values[3];
-	if (set_wall_image((*data)->mlx, (*data)->map) == 1)
-		return (false);
 	(*data)->map->f_color = map_values[4];
 	(*data)->map->c_color = map_values[5];
+	index = -1;
 	(*data)->map->map = map_array;
 	free(map_values);
 	get_map_height_width(data);
@@ -176,7 +176,7 @@ bool	parse_input(char *input, t_data **data)
 	close(fd);
 	if (!parse_map(data))
 		return (false);
-	if (!check_map(&(*data)->map, (*data)->height))
+	if (!check_map(&(*data)->map, (*data)->height, *data))
 		return (false);
 	return (true);
 }

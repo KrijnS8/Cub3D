@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 10:11:14 by splattje          #+#    #+#             */
-/*   Updated: 2024/10/02 13:11:40 by splattje         ###   ########.fr       */
+/*   Updated: 2024/10/07 13:08:57 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,17 @@ typedef enum e_image_index
 	E_WALL = 3
 }	t_image_index;
 
+typedef struct s_img
+{
+	void	*img_ptr;
+	char	*addr;
+	int		h;
+	int		w;
+	int		bpp;
+	int		endian;
+	int		line_len;
+}	t_img;
+
 typedef struct s_map_list
 {
 	char				*line;
@@ -45,8 +56,8 @@ typedef struct s_map_list
 
 typedef struct s_player
 {
-	double			p_x;
-	double			p_y;
+	double		p_x;
+	double		p_y;
 	char		p_face;
 	t_degree	p_angle;
 	int			move_fb;
@@ -61,7 +72,7 @@ typedef struct s_map
 	char		*s_image_location;
 	char		*w_image_location;
 	char		*e_image_location;
-	void		**images;
+	t_img		img[42];
 	char		*c_color;
 	char		*f_color;
 	int			c_color_hex;
@@ -79,7 +90,7 @@ typedef struct s_data
 }	t_data;
 
 bool		parse_input(char *input, t_data **data);
-void		free_map(t_map *map, void *mlx);
+void		free_map(t_map *map);
 void		free_data(t_data *data);
 t_data		*init_data(void);
 t_map_list	*new_map_list(char *line);
@@ -88,8 +99,9 @@ void		map_list_add_back(t_data **head, t_map_list *new);
 char		*set_map_info(t_map_list *head, int skip);
 void		free_2d_array(char **array);
 void		get_map_height_width(t_data **data);
-bool		check_map(t_map **map, int height);
-int			set_wall_image(void *mlx, t_map *map);
+bool		check_map(t_map **map, int height, t_data *data);
+bool		set_images(t_data **data);
+void		put_pixel_img(t_img img, int x, int y, int color);
 
 t_degree	char_to_degree(char c);
 

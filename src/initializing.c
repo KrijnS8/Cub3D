@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 15:35:17 by splattje          #+#    #+#             */
-/*   Updated: 2024/09/24 16:30:05 by splattje         ###   ########.fr       */
+/*   Updated: 2024/10/07 11:44:02 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static t_map	*init_map(void)
 	map->s_image_location = NULL;
 	map->e_image_location = NULL;
 	map->w_image_location = NULL;
-	map->images = NULL;
 	map->map = NULL;
 	map->map_list = NULL;
 	map->player.p_face = 0;
