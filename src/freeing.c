@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 15:47:53 by splattje          #+#    #+#             */
-/*   Updated: 2024/10/07 12:13:14 by splattje         ###   ########.fr       */
+/*   Updated: 2024/10/09 11:18:58 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ static void	free_map_list(t_map_list *list)
 	}
 }
 
+/**
+ * @param data the main data struct  (t_data)
+ * @param images the images needed to be freed
+ * @brief frees all the images)
+ */
 static void	free_images(t_data *data, t_img images[42])
 {
 	int	index;

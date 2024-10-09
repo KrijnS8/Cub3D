@@ -6,18 +6,18 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 13:31:27 by kschelvi          #+#    #+#             */
-/*   Updated: 2024/10/07 13:10:11 by splattje         ###   ########.fr       */
+/*   Updated: 2024/10/09 09:21:45 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RENDERING_H
 # define RENDERING_H
 
-# define SCREEN_WIDTH 1920
-# define SCREEN_HEIGHT 1080
+# define SCREEN_WIDTH 2048 // 1920
+# define SCREEN_HEIGHT 1280 // 1080
 
 # define RAY_ANGLE_DELTA 1
-# define FIELD_OF_VIEW	90
+# define FIELD_OF_VIEW	64
 # define NUM_RAYS (FIELD_OF_VIEW / RAY_ANGLE_DELTA)
 
 # include "degree.h"
