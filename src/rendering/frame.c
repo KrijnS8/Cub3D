@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/09/24 13:43:45 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/10/09 14:18:59 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/10/09 15:20:37 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,11 @@ void	update_screen(t_data *data, t_ray *rays)
 		}
 	}
 }
-
+/**
+ * @param data pointer to the main data struct (t_data)
+ * @param cast pointer to the cast config struct (t_cast_config)
+ * @brief Initializes a cast config struct using the data from a data struct
+ */
 void	cast_setup(t_data *data, t_cast_config *cast)
 {
 	double	right_x;
@@ -80,6 +84,11 @@ void	cast_setup(t_data *data, t_cast_config *cast)
 	cast->plane.y = right_y / sqrt(right_x * right_x + right_y * right_y);
 }
 
+/**
+ * @param data pointer to the main data struct (t_data)
+ * @brief builds a frame using the current game status
+ * @return an error struct (t_error)
+ */
 t_error	build_frame(t_data *data)
 {
 	t_ray			rays[FIELD_OF_VIEW / RAY_ANGLE_DELTA];

@@ -6,12 +6,15 @@
 /*   By: kschelvi <kschelvi@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/09 14:04:48 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/10/09 14:21:06 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/10/09 15:27:03 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rendering.h"
 
+/**
+ * @return The amount of rays in the current FOV
+ */
 int	get_num_rays(void)
 {
 	static int	num_rays = -1;
@@ -21,6 +24,9 @@ int	get_num_rays(void)
 	return (num_rays);
 }
 
+/**
+ * @return Returns the absolute value of d
+ */
 static double	my_abs(double d)
 {
 	if (d < 0)
@@ -28,6 +34,10 @@ static double	my_abs(double d)
 	return (d);
 }
 
+/**
+ * @param ray pointer to a ray struct (t_ray)
+ * @brief Initializes the delta distance of the given ray
+ */
 static void	setup_delta(t_ray *ray)
 {
 	if (ray->dir.x == 0)
@@ -40,6 +50,11 @@ static void	setup_delta(t_ray *ray)
 		ray->delta_dist.y = my_abs(1 / ray->dir.y);
 }
 
+/**
+ * @param cast pointer to a cast config struct (t_cast_config)
+ * @param ray pointer to a ray struct (t_ray)
+ * @brief Initializs the side distance and step values of the given ray
+ */
 static void	setup_side_step(t_cast_config *cast, t_ray *ray)
 {
 	if (ray->dir.x < 0)
@@ -64,9 +79,15 @@ static void	setup_side_step(t_cast_config *cast, t_ray *ray)
 	}
 }
 
-void	setup_ray(t_cast_config *cast, t_ray *ray, int i)
+/**
+ * @param cast pointer to a cast config struct (t_cast_config)
+ * @param ray pointer to a ray struct (t_ray)
+ * @param num number of the current ray
+ * @brief Initializes the given ray struct
+ */
+void	setup_ray(t_cast_config *cast, t_ray *ray, int num)
 {
-	ray->camera_x = 2 * i / get_num_rays() - 1;
+	ray->camera_x = 2 * num / get_num_rays() - 1;
 	ray->dir.x = cast->dir.x + cast->plane.x * ray->camera_x;
 	ray->dir.y = cast->dir.y + cast->plane.y * ray->camera_x;
 	ray->map_x = (int)cast->pos.x;

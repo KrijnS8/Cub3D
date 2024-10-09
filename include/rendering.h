@@ -6,7 +6,7 @@
 /*   By: kschelvi <kschelvi@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/09/24 13:31:27 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/10/09 14:18:44 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/10/09 15:24:47 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ t_error	build_frame(t_data *data);
 
 // Ray casting functions
 int		get_num_rays(void);
-void	setup_ray(t_cast_config *cast, t_ray *ray, int i);
+void	setup_ray(t_cast_config *cast, t_ray *ray, int num);
 t_error	ray_casting(t_data *data, t_cast_config *cast, t_ray *rays);
 
 // Point functions
