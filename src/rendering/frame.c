@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   frame.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/24 13:43:45 by kschelvi          #+#    #+#             */
-/*   Updated: 2024/10/09 10:57:51 by splattje         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   frame.c                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: splattje <splattje@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/09/24 13:43:45 by kschelvi      #+#    #+#                 */
+/*   Updated: 2024/10/09 11:55:29 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	init_rays(t_ray *rays, double p_angle)
 			i++;
 			continue ;
 		}
-		last_angle = degree_add(last_angle, int_to_degree(RAY_ANGLE_DELTA));
+		last_angle = degree_add(last_angle, double_to_degree(RAY_ANGLE_DELTA));
 		rays[i].degree = last_angle;
 		rays[i].line.num = i;
 		i++;

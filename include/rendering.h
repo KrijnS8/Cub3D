@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   rendering.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/24 13:31:27 by kschelvi          #+#    #+#             */
-/*   Updated: 2024/10/09 09:21:45 by splattje         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   rendering.h                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: kschelvi <kschelvi@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/09/24 13:31:27 by kschelvi      #+#    #+#                 */
+/*   Updated: 2024/10/09 12:37:44 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # define RAY_ANGLE_DELTA 1
 # define FIELD_OF_VIEW	64
 # define NUM_RAYS (FIELD_OF_VIEW / RAY_ANGLE_DELTA)
+# define FIELD_OF_VIEW	90
+# define NUM_RAYS (int)(FIELD_OF_VIEW / RAY_ANGLE_DELTA)
 
 # include "degree.h"
 
@@ -35,16 +37,20 @@ typedef struct s_point
 	double	y;
 }	t_point;
 
-typedef struct s_dda_config
+typedef struct s_cast_config
 {
 	t_point	pos;
-	double	distance;
-	t_point	start;
-	t_point	dir;
+	t_point dir;
+	t_point	plane;
+	double	camera_x;
+	t_point	ray_dir;
+	t_point	side_dist;
+	t_point	delta_dist;
+	double	perp_wall_dist;
 	int		step_x;
 	int		step_y;
-	t_point	side_dist;
-	t_point	delta;
+	double	distance;
+	
 }	t_dda_config;
 
 typedef struct s_line
@@ -60,12 +66,6 @@ typedef struct s_ray
 	t_line			line;
 	t_image_index	index;
 }	t_ray;
-
-typedef struct s_frame
-{
-	void	*image;
-	t_ray	rays[FIELD_OF_VIEW / RAY_ANGLE_DELTA];
-}	t_frame;
 
 // Frame functions
 t_error	build_frame(t_data *data);

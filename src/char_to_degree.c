@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   char_to_degree.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/24 15:59:48 by kschelvi          #+#    #+#             */
-/*   Updated: 2024/09/24 16:48:22 by splattje         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   char_to_degree.c                                   :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: splattje <splattje@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/09/24 15:59:48 by kschelvi      #+#    #+#                 */
+/*   Updated: 2024/10/09 12:26:18 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,3 +25,4 @@ t_degree	char_to_degree(char c)
 		return (int_to_degree(90));
 	return (int_to_degree(0));
 }
+
