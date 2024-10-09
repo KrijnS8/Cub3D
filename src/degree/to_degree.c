@@ -6,7 +6,7 @@
 /*   By: kschelvi <kschelvi@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/09/24 16:21:03 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/10/01 14:52:28 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/10/09 14:13:03 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 t_degree	int_to_degree(int i)
 {
-	t_degree result;
+	t_degree	result;
 
 	if (i < 0)
 		i = (360 - (-i % 360));
@@ -30,7 +30,7 @@ t_degree	int_to_degree(int i)
 
 t_degree	double_to_degree(double d)
 {
-	t_degree result;
+	t_degree	result;
 
 	if (d < 0)
 		d = (360 - fmod(-d, 360));
@@ -40,8 +40,8 @@ t_degree	double_to_degree(double d)
 
 double	degree_to_radian(t_degree d)
 {
-    double	radian;
+	double	radian;
 
-    radian = d.value * M_PI / 180.0;
-    return (radian);
+	radian = d.value * M_PI / 180.0;
+	return (radian);
 }

@@ -6,7 +6,7 @@
 /*   By: kschelvi <kschelvi@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/09/24 13:46:20 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/09/24 13:47:23 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/10/09 14:13:34 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ typedef enum e_error
 	ERR_MALLOC
 }	t_error;
 
-void	print_error();
+void	print_error(void);
 
 #endif

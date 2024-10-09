@@ -6,22 +6,14 @@
 /*   By: kschelvi <kschelvi@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/09/24 13:28:42 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/09/24 13:44:36 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/10/09 14:20:33 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 #include "rendering.h"
 
-int	repl()
+int	repl(void)
 {
-	
-	while(true)
-	{
-
-
-
-
-		
-	}
+	return (0);
 }

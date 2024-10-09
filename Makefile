@@ -31,6 +31,7 @@ SRC = main.c \
 		degree/to_degree.c \
 		rendering/frame.c \
 		rendering/ray_casting.c \
+		rendering/setup_ray.c \
 		gameplay/key_hooks.c \
 		gameplay/get_time.c \
 		char_to_degree.c

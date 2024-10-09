@@ -6,7 +6,7 @@
 /*   By: kschelvi <kschelvi@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/09/24 13:31:27 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/10/09 13:24:23 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/10/09 14:18:44 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 
 # define RAY_ANGLE_DELTA 1
 # define FIELD_OF_VIEW	64
-# define NUM_RAYS (FIELD_OF_VIEW / RAY_ANGLE_DELTA)
 
 # include "degree.h"
 
@@ -38,7 +37,7 @@ typedef struct s_point
 typedef struct s_cast_config
 {
 	t_point	pos;
-	t_point dir;
+	t_point	dir;
 	t_point	plane;
 }	t_cast_config;
 
@@ -63,6 +62,8 @@ typedef struct s_ray
 t_error	build_frame(t_data *data);
 
 // Ray casting functions
+int		get_num_rays(void);
+void	setup_ray(t_cast_config *cast, t_ray *ray, int i);
 t_error	ray_casting(t_data *data, t_cast_config *cast, t_ray *rays);
 
 // Point functions
