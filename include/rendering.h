@@ -6,7 +6,7 @@
 /*   By: kschelvi <kschelvi@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/09/24 13:31:27 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/10/09 12:37:44 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/10/09 13:24:23 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 # define RAY_ANGLE_DELTA 1
 # define FIELD_OF_VIEW	64
 # define NUM_RAYS (FIELD_OF_VIEW / RAY_ANGLE_DELTA)
-# define FIELD_OF_VIEW	90
-# define NUM_RAYS (int)(FIELD_OF_VIEW / RAY_ANGLE_DELTA)
 
 # include "degree.h"
 
@@ -42,28 +40,22 @@ typedef struct s_cast_config
 	t_point	pos;
 	t_point dir;
 	t_point	plane;
-	double	camera_x;
-	t_point	ray_dir;
-	t_point	side_dist;
-	t_point	delta_dist;
-	double	perp_wall_dist;
-	int		step_x;
-	int		step_y;
-	double	distance;
-	
-}	t_dda_config;
-
-typedef struct s_line
-{
-	int	num;
-	int	height;
-}	t_line;
+}	t_cast_config;
 
 typedef struct s_ray
 {
-	t_degree		degree;
+	double			camera_x;
+	t_point			dir;
+	t_point			side_dist;
+	t_point			delta_dist;
+	int				map_x;
+	int				map_y;
+	int				step_x;
+	int				step_y;
+	int				hit;
+	int				side;
 	double			distance;
-	t_line			line;
+	double			height;
 	t_image_index	index;
 }	t_ray;
 
@@ -71,7 +63,7 @@ typedef struct s_ray
 t_error	build_frame(t_data *data);
 
 // Ray casting functions
-t_error	cast_ray(t_data *data, t_ray *ray);
+t_error	ray_casting(t_data *data, t_cast_config *cast, t_ray *rays);
 
 // Point functions
 t_point	create_point(double x, double y);

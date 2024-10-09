@@ -6,13 +6,15 @@
 /*   By: splattje <splattje@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/09/24 13:43:45 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/10/09 11:55:29 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/10/09 13:25:03 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rendering.h"
 #include "my_error.h"
 #include "gameplay.h"
+#include "degree.h"
+#include <math.h>
 
 /**
  * @param img img struct countaining image info
@@ -63,39 +65,29 @@ void	update_screen(t_data *data, t_ray *rays)
 	}
 }
 
-void	init_rays(t_ray *rays, double p_angle)
+void	cast_setup(t_data *data, t_cast_config *cast)
 {
-	size_t		i;
-	t_degree	last_angle;
+	double	right_x;
+	double	right_y;
 
-	i = 0;
-	while (i < NUM_RAYS)
-	{
-		if (i == 0)
-		{
-			rays[i].degree = double_to_degree(p_angle - FIELD_OF_VIEW / 2);
-			last_angle = rays[i].degree;
-			rays[i].line.num = i;
-			i++;
-			continue ;
-		}
-		last_angle = degree_add(last_angle, double_to_degree(RAY_ANGLE_DELTA));
-		rays[i].degree = last_angle;
-		rays[i].line.num = i;
-		i++;
-	}
+	cast->pos.x = data->map->player.p_x;
+	cast->pos.y = data->map->player.p_y;
+	cast->dir.x = cos(degree_to_radian(data->map->player.p_angle));
+	cast->dir.y = cos(degree_to_radian(data->map->player.p_angle));
+	right_x = -cast->dir.y;
+	right_y = cast->dir.x;
+	cast->plane.x = right_x / sqrt(right_x * right_x + right_y * right_y);
+	cast->plane.y = right_y / sqrt(right_x * right_x + right_y * right_y);
 }
 
 t_error	build_frame(t_data *data)
 {
-	t_ray	rays[NUM_RAYS];
+	t_ray			rays[NUM_RAYS];
+	t_cast_config	cast;
 
-	init_rays(rays, data->map->player.p_angle.value);
-	for (int i = 0; i < NUM_RAYS; i++)
-	{
-		//printf("%f\n", rays[i].degree.value);
-		cast_ray(data, &(rays[i]));
-	}
+	cast_setup(data, &cast);
+	ray_casting(data, &cast, rays);
+	
 	update_screen(data, rays);
 	return (ERR_OK);
 }
