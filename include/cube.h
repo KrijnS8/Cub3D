@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 10:11:14 by splattje          #+#    #+#             */
-/*   Updated: 2024/10/07 13:08:57 by splattje         ###   ########.fr       */
+/*   Updated: 2024/10/09 12:53:28 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ typedef struct s_map
 	char		*s_image_location;
 	char		*w_image_location;
 	char		*e_image_location;
-	t_img		img[42];
+	t_img		img[46];
 	char		*c_color;
 	char		*f_color;
 	int			c_color_hex;

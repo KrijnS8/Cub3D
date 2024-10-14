@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 13:57:33 by splattje          #+#    #+#             */
-/*   Updated: 2024/10/09 11:15:34 by splattje         ###   ########.fr       */
+/*   Updated: 2024/10/14 09:58:55 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,10 +115,12 @@ bool	set_images(t_data **data)
 	int	index;
 
 	index = -1;
-	while (++index < 42)
+	while (++index < 46)
 	{
-		if (index >= 40)
+		if (index == 40 || index == 41)
 			(*data)->map->img[index] = new_empty_image(*data);
+		else if (index >= 42 && index <= 45)
+			(*data)->map->img[index] = new_image(*data, index - 42);
 		else
 			(*data)->map->img[index] = new_image(*data, N_WALL);
 		if ((*data)->map->img[index].img_ptr == NULL)

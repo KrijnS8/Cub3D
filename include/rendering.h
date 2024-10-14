@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   rendering.h                                        :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: kschelvi <kschelvi@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/09/24 13:31:27 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/10/09 15:24:47 by kschelvi      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   rendering.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/24 13:31:27 by kschelvi          #+#    #+#             */
+/*   Updated: 2024/10/14 09:42:09 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RENDERING_H
 # define RENDERING_H
 
-# define SCREEN_WIDTH 2048 // 1920
-# define SCREEN_HEIGHT 1280 // 1080
+# define SCREEN_WIDTH 2048
+# define SCREEN_HEIGHT 1280
 
 # define RAY_ANGLE_DELTA 1
 # define FIELD_OF_VIEW	64

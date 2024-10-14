@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 10:18:04 by splattje          #+#    #+#             */
-/*   Updated: 2024/09/26 09:26:49 by splattje         ###   ########.fr       */
+/*   Updated: 2024/10/09 14:33:49 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,19 @@
  */
 void	get_map_height_width(t_data **data)
 {
-	int	width;
-	int	height;
-	int	size;
+	int			width;
+	int			height;
+	t_map_list	*list;
 
 	width = 0;
-	height = -1;
-	while ((*data)->map->map[++height] != NULL)
+	list = (*data)->map->map_list;
+	while (list != NULL)
 	{
-		size = (int)ft_strlen((*data)->map->map[height]);
-		if (size > width)
-			width = size;
+		if ((int)list->line_size > width)
+			width = list->line_size;
+		list = list->next;
 	}
+	height = map_list_size((*data)->map->map_list);
 	(*data)->height = height;
 	(*data)->width = width;
 }

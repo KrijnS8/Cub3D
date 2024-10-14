@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 15:47:53 by splattje          #+#    #+#             */
-/*   Updated: 2024/10/09 11:18:58 by splattje         ###   ########.fr       */
+/*   Updated: 2024/10/14 09:18:14 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,28 @@ static void	free_map_list(t_map_list *list)
  * @param images the images needed to be freed
  * @brief frees all the images)
  */
-static void	free_images(t_data *data, t_img images[42])
+static void	free_images(t_data *data, t_img images[46])
 {
 	int	index;
 
 	index = -1;
-	while (images[++index].img_ptr != NULL && index < 40)
-		mlx_destroy_image(data->mlx, images[index].img_ptr);
-	if (images[40].img_ptr != NULL)
-		mlx_destroy_image(data->mlx, images[40].img_ptr);
-	if (images[41].img_ptr != NULL)
-		mlx_destroy_image(data->mlx, images[41].img_ptr);
+	if (images != NULL)
+	{
+		while (images[++index].img_ptr != NULL && index < 40)
+			mlx_destroy_image(data->mlx, images[index].img_ptr);
+		if (images[40].img_ptr != NULL)
+			mlx_destroy_image(data->mlx, images[40].img_ptr);
+		if (images[41].img_ptr != NULL)
+			mlx_destroy_image(data->mlx, images[41].img_ptr);
+		if (images[42].img_ptr != NULL)
+			mlx_destroy_image(data->mlx, images[42].img_ptr);
+		if (images[43].img_ptr != NULL)
+			mlx_destroy_image(data->mlx, images[43].img_ptr);
+		if (images[44].img_ptr != NULL)
+			mlx_destroy_image(data->mlx, images[44].img_ptr);
+		if (images[45].img_ptr != NULL)
+			mlx_destroy_image(data->mlx, images[45].img_ptr);
+	}
 }
 
 /**
@@ -81,7 +92,8 @@ void	free_data(t_data *data)
 		if (data->map != NULL)
 		{
 			free_map(data->map);
-			free_images(data, data->map->img);
+			if (data->map->img[0].img_ptr != NULL)
+				free_images(data, data->map->img);
 			free(data->map);
 		}
 		if (data->win != NULL)

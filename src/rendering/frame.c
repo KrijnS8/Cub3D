@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   frame.c                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: splattje <splattje@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/09/24 13:43:45 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/10/09 15:20:37 by kschelvi      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   frame.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/24 13:43:45 by kschelvi          #+#    #+#             */
+/*   Updated: 2024/10/14 09:59:45 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void	update_screen(t_data *data, t_ray *rays)
 		while (++x <= SCREEN_WIDTH)
 		{
 			counter = ((y / 256) * 8) + (x / 256);
+			if (counter > 40)
+				counter = 40;
 			if (y < ((SCREEN_HEIGHT / 2) - 256))
 				put_pixel_img(data->map->img[counter], x % 256, y % 256,
 					data->map->c_color_hex);
@@ -64,6 +66,7 @@ void	update_screen(t_data *data, t_ray *rays)
 		}
 	}
 }
+
 /**
  * @param data pointer to the main data struct (t_data)
  * @param cast pointer to the cast config struct (t_cast_config)

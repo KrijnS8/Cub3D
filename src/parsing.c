@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   parsing.c                                          :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: splattje <splattje@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/08/15 14:08:51 by splattje      #+#    #+#                 */
-/*   Updated: 2024/10/09 15:18:56 by kschelvi      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/15 14:08:51 by splattje          #+#    #+#             */
+/*   Updated: 2024/10/14 09:56:02 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ bool	read_map(int fd, t_data **data)
 		free(line);
 		node = new_map_list(trimmed);
 		if (node == NULL)
-			return (perror("Error\nMalloc failed3"),
+			return (perror("Error\nMalloc failed"),
 				free_map((*data)->map),
 				false);
 		map_list_add_back(data, node);
@@ -50,30 +50,32 @@ bool	read_map(int fd, t_data **data)
 
 /**
  * @param map the linked list to the map data
+ * @param data pointer to the main data struct
  * @return a double char pointer with the map data, or NULL on failure
  * @brief converts the map data linked list into a 2D array
  */
-char	**map_to_array(t_map_list *map)
+char	**map_to_array(t_map_list *map, t_data **data)
 {
-	int		size;
 	int		index;
 	char	**map_array;
+	int		length;
 
 	index = -1;
 	while (++index < 8)
 		map = map->next;
-	size = map_list_size(map);
-	map_array = (char **)ft_calloc(sizeof(char *), size + 1);
+	map_array = (char **)ft_calloc(sizeof(char *), (*data)->height + 1);
 	if (map_array == NULL)
-		return (perror("Error\nMalloc failed2"), NULL);
+		return (perror("Error\nMalloc failed"), NULL);
 	index = -1;
 	while (map != NULL)
 	{
-		++index;
-		map_array[index] = ft_strdup(map->line);
+		map_array[++index] = ft_calloc(sizeof(char), ((*data)->width + 1));
 		if (map_array[index] == NULL)
-			return (perror("Error\nMalloc failed"),
-				free_2d_array(map_array), NULL);
+			return (perror("Error\nMalloc failed"), NULL);
+		ft_strlcpy(map_array[index], map->line, ft_strlen(map->line) + 1);
+		length = -1;
+		while (((int)ft_strlen(map->line) + ++length) < (*data)->width)
+			map_array[index][map->line_size + length] = ' ';
 		map = map->next;
 	}
 	return (map_array);
@@ -126,10 +128,11 @@ bool	parse_map(t_data **data)
 	char	**map_values;
 	int		index;
 
+	get_map_height_width(data);
 	map_values = set_map_values(((*data)->map->map_list), -1);
 	if (map_values == NULL)
 		return (false);
-	map_array = map_to_array((*data)->map->map_list);
+	map_array = map_to_array((*data)->map->map_list, data);
 	if (map_array == NULL)
 		return (false);
 	(*data)->map->n_image_location = map_values[0];
@@ -141,7 +144,6 @@ bool	parse_map(t_data **data)
 	index = -1;
 	(*data)->map->map = map_array;
 	free(map_values);
-	get_map_height_width(data);
 	return (true);
 }
 

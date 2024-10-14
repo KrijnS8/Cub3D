@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   ray_casting.c                                      :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: splattje <splattje@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/09/24 13:35:00 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/10/09 15:20:22 by kschelvi      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   ray_casting.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/24 13:35:00 by kschelvi          #+#    #+#             */
+/*   Updated: 2024/10/14 10:00:13 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ static void	calculate_render_data(t_ray *ray)
  * @param data pointer to the main data struct (t_data)
  * @param cast pointer to a cast config struct (t_cast_config)
  * @param rays pointer to an uninitialized array of rays
- * @return An error struct (t_error), ray information will be stored in the original array
+ * @return An error struct (t_error), ray information will be stored in
+ * the original array
  * @brief Performs a raycasting operation from the current player position
  */
 t_error	ray_casting(t_data *data, t_cast_config *cast, t_ray *rays)

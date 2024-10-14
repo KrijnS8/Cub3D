@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 15:35:17 by splattje          #+#    #+#             */
-/*   Updated: 2024/10/07 11:44:02 by splattje         ###   ########.fr       */
+/*   Updated: 2024/10/14 09:20:32 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 static t_map	*init_map(void)
 {
 	t_map	*map;
+	int		index;
 
 	map = malloc(sizeof(t_map));
 	if (map == NULL)
@@ -33,6 +34,9 @@ static t_map	*init_map(void)
 	map->w_image_location = NULL;
 	map->map = NULL;
 	map->map_list = NULL;
+	index = -1;
+	while (++index < 46)
+		map->img[index].img_ptr = NULL;
 	map->player.p_face = 0;
 	map->player.p_x = 0;
 	map->player.p_y = 0;
