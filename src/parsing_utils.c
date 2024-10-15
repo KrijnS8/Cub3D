@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 10:18:04 by splattje          #+#    #+#             */
-/*   Updated: 2024/10/09 14:33:49 by splattje         ###   ########.fr       */
+/*   Updated: 2024/10/15 12:30:04 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ void	get_map_height_width(t_data **data)
 			width = list->line_size;
 		list = list->next;
 	}
-	height = map_list_size((*data)->map->map_list);
+	height = map_list_size(
+			(*data)->map->map_list->next->next->next->next
+			->next->next->next->next);
 	(*data)->height = height;
 	(*data)->width = width;
 }

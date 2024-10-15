@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   map_checking.c                                     :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: splattje <splattje@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/08/22 09:51:23 by splattje      #+#    #+#                 */
-/*   Updated: 2024/10/09 11:55:22 by kschelvi      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   map_checking.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/22 09:51:23 by splattje          #+#    #+#             */
+/*   Updated: 2024/10/15 09:43:42 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ static bool	check_wall_file(t_map **map)
 
 /**
  * @param rgb_string the string holding the rgb value
- * @return returnst the value as hex
+ * @return returnst the value as hex, -1 if the number was not in rgb range
  * @brief convets the rgb color to the hex veriant;
  */
 static int	floor_ceiling_rgb(char *rgb_string)
@@ -129,12 +129,18 @@ static int	floor_ceiling_rgb(char *rgb_string)
 	r = 0;
 	while (rgb_string[++index] != ',' && rgb_string[index] != '\0')
 		r = r * 10 + (rgb_string[index] - '0');
+	if (r < 0 || r > 255)
+		return (-1);
 	g = 0;
 	while (rgb_string[++index] != ',' && rgb_string[index] != '\0')
 		g = g * 10 + (rgb_string[index] - '0');
+	if (g < 0 || g > 255)
+		return (-1);
 	b = 0;
-	while (rgb_string[++index] != ',' && rgb_string[index] != '\0')
+	while (rgb_string[++index] != '\0')
 		b = b * 10 + (rgb_string[index] - '0');
+	if (b < 0 || b > 255)
+		return (-1);
 	hex_value = (r << 16) | (g << 8) | b;
 	return (hex_value);
 }
@@ -158,10 +164,8 @@ bool	check_map(t_map **map, int height, t_data *data)
 	{
 		x = -1;
 		while ((*map)->map[y][++x] != '\0')
-		{
 			if (!floor_fill((*map)->map, y, x, height))
 				return (false);
-		}
 	}
 	(*map)->map[(int)(*map)->player.p_y][(int)(*map)->player.p_x]
 		= (*map)->player.p_face;
@@ -169,6 +173,8 @@ bool	check_map(t_map **map, int height, t_data *data)
 		return (false);
 	(*map)->c_color_hex = floor_ceiling_rgb((*map)->c_color);
 	(*map)->f_color_hex = floor_ceiling_rgb((*map)->f_color);
+	if ((*map)->c_color_hex == -1 || (*map)->f_color_hex == -1)
+		return (false);
 	if (!set_images(&data))
 		return (false);
 	return (true);

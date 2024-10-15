@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 13:43:45 by kschelvi          #+#    #+#             */
-/*   Updated: 2024/10/14 09:59:45 by splattje         ###   ########.fr       */
+/*   Updated: 2024/10/15 12:52:57 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,38 @@ unsigned int	get_pixel_img(t_img img, int x, int y)
 }
 
 /**
+ * @param x the x position on screen
+ * @param y the y position of screen
+ * @param data pointer to the main data struct
+ * @param rays pointer to all the rays
+ * @brief looks at what color the pixel needs to be and fills it.
+ */
+static void	put_pixel(int x, int y, t_data *data, t_ray *rays)
+{
+	int	counter;
+	int	rest;
+	int	ray;
+
+	counter = ((y / 256) * 8) + (x / 256);
+	if (counter > 40)
+		counter = 40;
+	ray = x / (SCREEN_WIDTH / get_num_rays());
+	if (ray > get_num_rays() - 1)
+		ray = get_num_rays() - 1;
+	rest = (SCREEN_HEIGHT - rays[ray].height) / 2;
+	if (y < rest)
+		put_pixel_img(data->map->img[counter], x % 256, y % 256,
+			data->map->c_color_hex);
+	else if (y > rays[ray].height)
+		put_pixel_img(data->map->img[counter], x % 256, y % 256,
+			data->map->f_color_hex);
+	else
+		put_pixel_img(data->map->img[counter], x % 256, y % 256, 
+			get_pixel_img(data->map->img[41 + rays[ray].index],
+			x % 256, y % 256));
+}
+
+/**
  * @var x the x cordinate of the screen
  * @var y the y cordinate of the screen
  * @var counter which image in de image array we need 
@@ -44,7 +76,6 @@ void	update_screen(t_data *data, t_ray *rays)
 	int	y;
 	int	counter;
 
-	(void)rays;
 	y = -1;
 	while (++y <= SCREEN_HEIGHT)
 	{
@@ -54,12 +85,7 @@ void	update_screen(t_data *data, t_ray *rays)
 			counter = ((y / 256) * 8) + (x / 256);
 			if (counter > 40)
 				counter = 40;
-			if (y < ((SCREEN_HEIGHT / 2) - 256))
-				put_pixel_img(data->map->img[counter], x % 256, y % 256,
-					data->map->c_color_hex);
-			else if (y > ((SCREEN_HEIGHT / 2)))
-				put_pixel_img(data->map->img[counter], x % 256, y % 256,
-					data->map->f_color_hex);
+			put_pixel(x, y, data, rays);
 			if (x > 254 && y > 254 && ((x % 255) == 0) && ((y % 255) == 0))
 				mlx_put_image_to_window(data->mlx, data->win,
 					data->map->img[counter].img_ptr, (x - 255), (y - 255));
