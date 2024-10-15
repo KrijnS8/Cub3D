@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   freeing.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/15 15:47:53 by splattje          #+#    #+#             */
-/*   Updated: 2024/10/14 09:18:14 by splattje         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   freeing.c                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: splattje <splattje@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/08/15 15:47:53 by splattje      #+#    #+#                 */
+/*   Updated: 2024/10/15 16:17:30 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,23 +38,13 @@ static void	free_images(t_data *data, t_img images[46])
 {
 	int	index;
 
+	if (data->frame.img_ptr != NULL)
+		mlx_destroy_image(data->mlx, data->frame.img_ptr);
 	index = -1;
 	if (images != NULL)
 	{
-		while (images[++index].img_ptr != NULL && index < 40)
+		while (images[++index].img_ptr != NULL && index < 4)
 			mlx_destroy_image(data->mlx, images[index].img_ptr);
-		if (images[40].img_ptr != NULL)
-			mlx_destroy_image(data->mlx, images[40].img_ptr);
-		if (images[41].img_ptr != NULL)
-			mlx_destroy_image(data->mlx, images[41].img_ptr);
-		if (images[42].img_ptr != NULL)
-			mlx_destroy_image(data->mlx, images[42].img_ptr);
-		if (images[43].img_ptr != NULL)
-			mlx_destroy_image(data->mlx, images[43].img_ptr);
-		if (images[44].img_ptr != NULL)
-			mlx_destroy_image(data->mlx, images[44].img_ptr);
-		if (images[45].img_ptr != NULL)
-			mlx_destroy_image(data->mlx, images[45].img_ptr);
 	}
 }
 

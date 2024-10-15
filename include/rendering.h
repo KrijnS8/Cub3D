@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/09/24 13:31:27 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/10/15 14:54:31 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/10/15 16:40:53 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,21 @@ typedef struct s_ray
 }	t_ray;
 
 // Frame functions
-int	build_frame(t_data *data);
+int				build_frame(t_data *data);
+t_error			render_frame(t_data *data, t_ray *rays);
 
 // Ray casting functions
-int		get_num_rays(void);
-void	setup_ray(t_cast_config *cast, t_ray *ray, int num);
-t_error	ray_casting(t_data *data, t_cast_config *cast, t_ray *rays);
+int				get_num_rays(void);
+void			setup_ray(t_cast_config *cast, t_ray *ray, int num);
+t_error			ray_casting(t_data *data, t_cast_config *cast, t_ray *rays);
 
 // Point functions
-t_point	create_point(double x, double y);
+t_point			create_point(double x, double y);
+
+// Image functions
+void			put_img_to_img(t_img dst, t_img src, int x, int y);
+void			put_pixel_img(t_img img, int x, int y, int color);
+unsigned int	get_pixel_img(t_img img, int x, int y);
+void			clear_img(t_img src);
 
 #endif

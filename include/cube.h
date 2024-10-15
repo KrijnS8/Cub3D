@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cube.h                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/14 10:11:14 by splattje          #+#    #+#             */
-/*   Updated: 2024/10/15 14:18:20 by splattje         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   cube.h                                             :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: splattje <splattje@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/05/14 10:11:14 by splattje      #+#    #+#                 */
+/*   Updated: 2024/10/15 16:37:37 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@
 # include <stdbool.h>
 
 # include "degree.h"
+
+# define IMAGE_WIDTH 256
+# define IMAGE_HEIGHT 256
+
+typedef enum e_error	t_error;
 
 typedef enum e_image_index
 {
@@ -73,7 +78,7 @@ typedef struct s_map
 	char		*s_image_location;
 	char		*w_image_location;
 	char		*e_image_location;
-	t_img		img[46];
+	t_img		img[4];
 	char		*c_color;
 	char		*f_color;
 	int			c_color_hex;
@@ -88,6 +93,7 @@ typedef struct s_data
 	int		width;
 	void	*mlx;
 	void	*win;
+	t_img	frame;
 }	t_data;
 
 bool		parse_input(char *input, t_data **data);
@@ -102,7 +108,6 @@ void		free_2d_array(char **array);
 void		get_map_height_width(t_data **data);
 bool		check_map(t_map **map, int height, t_data *data);
 bool		set_images(t_data **data);
-void		put_pixel_img(t_img img, int x, int y, int color);
 
 t_degree	char_to_degree(char c);
 

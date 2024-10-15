@@ -30,7 +30,9 @@ SRC = main.c \
 		degree/degree_expresions.c \
 		degree/to_degree.c \
 		rendering/frame.c \
+		rendering/img.c \
 		rendering/ray_casting.c \
+		rendering/rendering.c \
 		rendering/setup_ray.c \
 		gameplay/key_hooks.c \
 		gameplay/get_time.c \

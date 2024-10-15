@@ -1,16 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   initializing.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/15 15:35:17 by splattje          #+#    #+#             */
-/*   Updated: 2024/10/15 14:21:28 by splattje         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   initializing.c                                     :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: splattje <splattje@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/08/15 15:35:17 by splattje      #+#    #+#                 */
+/*   Updated: 2024/10/15 16:37:19 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
+#include "my_error.h"
+#include "rendering.h"
 
 /**
  * @return the initialized player struct
@@ -52,7 +54,7 @@ static t_map	*init_map(void)
 	map->map = NULL;
 	map->map_list = NULL;
 	index = -1;
-	while (++index < 46)
+	while (++index < 4)
 		map->img[index].img_ptr = NULL;
 	map->player = init_player();
 	return (map);
@@ -76,5 +78,7 @@ t_data	*init_data(void)
 	data->win = NULL;
 	data->height = 0;
 	data->width = 0;
+	data->frame.addr = NULL;
+	data->frame.img_ptr = NULL;
 	return (data);
 }
