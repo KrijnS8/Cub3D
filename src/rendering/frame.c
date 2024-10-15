@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   frame.c                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: splattje <splattje@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/09/24 13:43:45 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/10/15 13:41:15 by kschelvi      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   frame.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/24 13:43:45 by kschelvi          #+#    #+#             */
+/*   Updated: 2024/10/15 13:42:50 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	put_pixel(int x, int y, t_data *data, t_ray *rays)
 	if (y < rest)
 		put_pixel_img(data->map->img[counter], x % 256, y % 256,
 			data->map->c_color_hex);
-	else if (y > rays[ray].height)
+	else if (y > SCREEN_HEIGHT - rest)
 		put_pixel_img(data->map->img[counter], x % 256, y % 256,
 			data->map->f_color_hex);
 	else
