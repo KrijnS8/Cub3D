@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   frame.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/24 13:43:45 by kschelvi          #+#    #+#             */
-/*   Updated: 2024/10/15 13:42:50 by splattje         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   frame.c                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: splattje <splattje@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/09/24 13:43:45 by kschelvi      #+#    #+#                 */
+/*   Updated: 2024/10/15 14:22:19 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,11 +103,10 @@ void	cast_setup(t_data *data, t_cast_config *cast)
 	double	right_x;
 	double	right_y;
 
-	cast->pos.x = data->map->player.p_x;
-	cast->pos.y = data->map->player.p_y;
+	cast->pos.x = data->map->player.p_x + 0.5;
+	cast->pos.y = data->map->player.p_y + 0.5;
 	cast->dir.x = cos(degree_to_radian(data->map->player.p_angle));
 	cast->dir.y = sin(degree_to_radian(data->map->player.p_angle));
-	printf("%f\t%f\n", cast->dir.x, cast->dir.y);
 	right_x = -cast->dir.y;
 	right_y = cast->dir.x;
 	cast->plane.x = right_x / sqrt(right_x * right_x + right_y * right_y);
