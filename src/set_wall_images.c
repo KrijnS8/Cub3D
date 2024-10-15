@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 13:57:33 by splattje          #+#    #+#             */
-/*   Updated: 2024/10/14 09:58:55 by splattje         ###   ########.fr       */
+/*   Updated: 2024/10/15 14:06:36 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,12 +91,12 @@ static t_img	new_image(t_data *data, t_image_index i_index)
 	else if (i_index == S_WALL)
 		img.img_ptr = mlx_xpm_file_to_image(data->mlx,
 				data->map->s_image_location, &img.w, &img.h);
-	else if (i_index == E_WALL)
-		img.img_ptr = mlx_xpm_file_to_image(data->mlx,
-				data->map->e_image_location, &img.w, &img.h);
-	else
+	else if (i_index == W_WALL)
 		img.img_ptr = mlx_xpm_file_to_image(data->mlx,
 				data->map->w_image_location, &img.w, &img.h);
+	else
+		img.img_ptr = mlx_xpm_file_to_image(data->mlx,
+				data->map->e_image_location, &img.w, &img.h);
 	if (img.img_ptr == NULL)
 		return (img);
 	img.addr = mlx_get_data_addr(img.img_ptr, (&img.bpp),

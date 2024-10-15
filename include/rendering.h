@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 13:31:27 by kschelvi          #+#    #+#             */
-/*   Updated: 2024/10/15 13:42:38 by splattje         ###   ########.fr       */
+/*   Updated: 2024/10/15 13:55:11 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ typedef struct s_ray
 }	t_ray;
 
 // Frame functions
-t_error	build_frame(t_data *data);
+int	build_frame(t_data *data);
 
 // Ray casting functions
 int		get_num_rays(void);

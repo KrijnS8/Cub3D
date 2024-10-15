@@ -6,11 +6,28 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 15:35:17 by splattje          #+#    #+#             */
-/*   Updated: 2024/10/14 09:20:32 by splattje         ###   ########.fr       */
+/*   Updated: 2024/10/15 14:21:28 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
+
+/**
+ * @return the initialized player struct
+ * @brief sets default value for the player struct
+ */
+static t_player	init_player(void)
+{
+	t_player	player;
+
+	player.p_face = 0;
+	player.p_x = 0;
+	player.p_y = 0;
+	player.move_fb = 0;
+	player.move_lr = 0;
+	player.looking = 0;
+	return (player);
+}
 
 /**
  * @return a pointer to the t_map struct
@@ -37,11 +54,7 @@ static t_map	*init_map(void)
 	index = -1;
 	while (++index < 46)
 		map->img[index].img_ptr = NULL;
-	map->player.p_face = 0;
-	map->player.p_x = 0;
-	map->player.p_y = 0;
-	map->player.move_fb = 0;
-	map->player.move_lr = 0;
+	map->player = init_player();
 	return (map);
 }
 

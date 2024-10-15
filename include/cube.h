@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 10:11:14 by splattje          #+#    #+#             */
-/*   Updated: 2024/10/09 12:53:28 by splattje         ###   ########.fr       */
+/*   Updated: 2024/10/15 14:18:20 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct s_player
 	t_degree	p_angle;
 	int			move_fb;
 	int			move_lr;
+	int			looking;
 }	t_player;
 
 typedef struct s_map
