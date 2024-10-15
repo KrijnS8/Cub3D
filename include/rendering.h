@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   rendering.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/24 13:31:27 by kschelvi          #+#    #+#             */
-/*   Updated: 2024/10/15 13:55:11 by splattje         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   rendering.h                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: splattje <splattje@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/09/24 13:31:27 by kschelvi      #+#    #+#                 */
+/*   Updated: 2024/10/15 14:54:31 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define SCREEN_WIDTH 2048
 # define SCREEN_HEIGHT 1280
 
-# define RAY_ANGLE_DELTA 0.5
+# define RAY_ANGLE_DELTA 0.125
 # define FIELD_OF_VIEW	64
 
 # include "degree.h"

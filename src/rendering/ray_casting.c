@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/09/24 13:35:00 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/10/15 13:14:06 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/10/15 14:25:33 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ t_error	ray_casting(t_data *data, t_cast_config *cast, t_ray *rays)
 		setup_ray(cast, &(rays[i]), i);
 		dda(data, &(rays[i]));
 		calculate_render_data(&(rays[i]));
-		printf("Distance: %f\tHeight: %f\tSide: %d\n", rays[i].distance, rays[i].height, rays[i].index);
+		//printf("Distance: %f\tHeight: %f\tSide: %d\n", rays[i].distance, rays[i].height, rays[i].index);
 		i++;
 	}
 	return (ERR_OK);
