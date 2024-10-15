@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   rendering.h                                        :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: splattje <splattje@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/09/24 13:31:27 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/10/22 16:20:10 by kschelvi      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   rendering.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/24 13:31:27 by kschelvi          #+#    #+#             */
+/*   Updated: 2024/10/23 09:59:01 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void			setup_ray(t_cast_config *cast, t_ray *ray, int num);
 t_error			ray_casting(t_data *data, t_cast_config *cast, t_ray *rays);
 
 // Point functions
-t_dpoint		create_point(double x, double y);
+t_dpoint			create_point(double x, double y);
 
 // Image functions
 void			put_img_to_img(t_img dst, t_img src, int x, int y);
