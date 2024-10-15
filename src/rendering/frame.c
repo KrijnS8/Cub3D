@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/09/24 13:43:45 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/10/15 13:15:55 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/10/15 13:41:15 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ void	cast_setup(t_data *data, t_cast_config *cast)
  */
 t_error	build_frame(t_data *data)
 {
-	t_ray			rays[FIELD_OF_VIEW / RAY_ANGLE_DELTA];
+	t_ray			rays[(int)(FIELD_OF_VIEW / RAY_ANGLE_DELTA)];
 	t_cast_config	cast;
 
 	cast_setup(data, &cast);
