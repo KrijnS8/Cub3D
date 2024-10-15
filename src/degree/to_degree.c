@@ -6,7 +6,7 @@
 /*   By: kschelvi <kschelvi@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/09/24 16:21:03 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/10/09 15:35:20 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/10/15 13:13:36 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,6 @@ double	degree_to_radian(t_degree d)
 {
 	double	radian;
 
-	radian = d.value * M_PI / 180.0;
+	radian = (d.value - 90.0) * (M_PI / 180.0);
 	return (radian);
 }
