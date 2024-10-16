@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 13:43:45 by kschelvi          #+#    #+#             */
-/*   Updated: 2024/10/15 14:48:30 by splattje         ###   ########.fr       */
+/*   Updated: 2024/10/16 10:50:17 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "my_error.h"
 #include "gameplay.h"
 #include "degree.h"
-#include <math.h>
+#include <math.h> 
 
 /**
  * @param img img struct countaining image info
@@ -55,9 +55,9 @@ static void	put_pixel(int x, int y, t_data *data, t_ray *rays)
 		put_pixel_img(data->map->img[counter], x % 256, y % 256,
 			data->map->f_color_hex);
 	else
-		put_pixel_img(data->map->img[counter], x % 256, y % 256, 
+		put_pixel_img(data->map->img[counter], x % 256, y % 256,
 			get_pixel_img(data->map->img[42 + rays[ray].index],
-			x % 256, y % 256));
+				x % 256, y % 256));
 }
 
 /**
@@ -123,9 +123,12 @@ int	build_frame(t_data *data)
 	t_ray			rays[(int)(FIELD_OF_VIEW / RAY_ANGLE_DELTA)];
 	t_cast_config	cast;
 
+	data->map->player.p_angle = degree_add(
+			int_to_degree(data->map->player.looking),
+			data->map->player.p_angle);
+	do_movement(data);
 	cast_setup(data, &cast);
 	ray_casting(data, &cast, rays);
 	update_screen(data, rays);
-	data->map->player.p_angle = degree_add(int_to_degree(data->map->player.looking), data->map->player.p_angle);
 	return (ERR_OK);
 }
