@@ -6,7 +6,7 @@
 /*   By: kschelvi <kschelvi@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/15 15:11:48 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/10/21 17:13:11 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/10/21 17:44:24 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	get_line_width()
 
 	if (line_width == -1)
 		line_width = SCREEN_WIDTH / get_num_rays();
-	return (line_width + 1);
+	return (line_width);
 }
 
 void	render_ray(t_data *data, t_ray ray, int n_rays, int i, int location_rays)
@@ -77,7 +77,7 @@ t_error	render_frame(t_data *data, t_ray *rays)
 		j = 0;
 		wall.x = rays[i].map_x;
 		wall.y = rays[i].map_y;
-		while (rays[i + j].map_x == wall.x && rays[i + j].map_y == wall.y)
+		while (i + j < get_num_rays() && rays[i + j].map_x == wall.x && rays[i + j].map_y == wall.y)
 			j++;
 		render_wall(data, &(rays[i]), j, i);
 		i += j;
