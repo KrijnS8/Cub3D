@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/09/24 13:35:00 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/10/15 14:25:33 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/10/21 13:17:24 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 /**
  * @param x x value
  * @param y y value
- * @return A point struct (t_point)
+ * @return A point struct (t_dpoint)
  */
-t_point	create_point(double x, double y)
+t_dpoint	create_point(double x, double y)
 {
-	t_point	point;
+	t_dpoint	point;
 
 	point.x = x;
 	point.y = y;
