@@ -6,7 +6,7 @@
 /*   By: kschelvi <kschelvi@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/15 15:11:48 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/10/15 16:44:57 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/10/21 13:00:43 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	add_line(t_data *data, t_ray ray, int i)
 	{
 		while (dy < ray.height)
 		{
-			put_pixel_img(data->frame, x + dx, y + dy, 0xFFFFFF);
+			put_pixel_img(data->frame, x + dx, y + dy, 0xFF0000);
 			dy++;
 		}
 		dx++;

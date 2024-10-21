@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/09/24 13:43:45 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/10/15 16:23:34 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/10/21 13:01:22 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,23 @@ int	build_frame(t_data *data)
 {
 	t_ray			rays[(int)(FIELD_OF_VIEW / RAY_ANGLE_DELTA)];
 	t_cast_config	cast;
+	int				x;
+	int				y;
 
+	data->map->player.p_angle = degree_add(
+			int_to_degree(data->map->player.looking),
+			data->map->player.p_angle);
+	do_movement(data);
+	mlx_mouse_get_pos(data->mlx, data->win, &x, &y);
+	if (x < (SCREEN_WIDTH / 4))
+		data->map->player.p_angle = degree_add(
+				int_to_degree(-1), data->map->player.p_angle);
+	else if (x > (SCREEN_WIDTH / 4) * 3)
+		data->map->player.p_angle = degree_add(
+				int_to_degree(1), data->map->player.p_angle);
+	else
+		data->map->player.p_angle = degree_add(
+				int_to_degree(0), data->map->player.p_angle);
 	cast_setup(data, &cast);
 	ray_casting(data, &cast, rays);
 	//update_screen(data, rays);
