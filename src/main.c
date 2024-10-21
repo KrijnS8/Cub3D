@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/14 10:10:37 by splattje      #+#    #+#                 */
-/*   Updated: 2024/10/21 16:42:53 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/10/21 17:06:37 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ int	main(int argc, char **argv)
 	mlx_hook(data->win, KeyRelease, KeyReleaseMask, &handle_release, data);
 	mlx_hook(data->win, DestroyNotify, StructureNotifyMask, &des_func, data);
 	mlx_mouse_move(data->mlx, data->win, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
-	//mlx_loop_hook(data->mlx, &build_frame, data);
-	build_frame(data);
+	mlx_loop_hook(data->mlx, &build_frame, data);
+	//build_frame(data);
 	mlx_loop(data->mlx);
 	mlx_do_key_autorepeaton(data->mlx);
 	free_data(data);
