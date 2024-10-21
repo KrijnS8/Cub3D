@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 13:43:45 by kschelvi          #+#    #+#             */
-/*   Updated: 2024/10/23 10:01:00 by splattje         ###   ########.fr       */
+/*   Updated: 2024/10/23 10:03:59 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ int	build_frame(t_data *data)
 				int_to_degree(0), data->map->player.p_angle);
 	cast_setup(data, &cast);
 	ray_casting(data, &cast, rays);
-	//update_screen(data, rays);
 	render_frame(data, rays);
 	mlx_put_image_to_window(data->mlx, data->win, data->frame.img_ptr, 0, 0);
 	data->map->player.p_angle = degree_add(int_to_degree(data->map->player.looking), data->map->player.p_angle);

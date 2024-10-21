@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 13:31:27 by kschelvi          #+#    #+#             */
-/*   Updated: 2024/10/23 09:59:01 by splattje         ###   ########.fr       */
+/*   Updated: 2024/10/23 10:03:14 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ t_dpoint			create_point(double x, double y);
 void			put_img_to_img(t_img dst, t_img src, int x, int y);
 void			put_pixel_img(t_img img, int x, int y, int color);
 unsigned int	get_pixel_img(t_img img, int x, int y);
+t_img			scale_image(t_data *data, t_img img, int new_width, int new_height);
 void			clear_img(t_img src);
 
 #endif
