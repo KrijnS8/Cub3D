@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 13:35:00 by kschelvi          #+#    #+#             */
-/*   Updated: 2024/10/23 10:10:16 by splattje         ###   ########.fr       */
+/*   Updated: 2024/10/23 10:12:34 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,11 @@ static void	dda(t_data *data, t_ray *ray)
  */
 static void	calculate_render_data(t_player *player, t_ray *ray)
 {
-	double wall_distance;
+	double	wall_distance;
 
 	if (ray->hit == 2)
 		ray->index = DOOR;
-	else if (ray->side == 0)
+	if (ray->side == 0)
 	{
 		ray->distance = (ray->side_dist.x - ray->delta_dist.x);
 		if (ray->dir.x < 0 && ray->index != DOOR)
