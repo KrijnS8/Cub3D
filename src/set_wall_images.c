@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/09/24 13:57:33 by splattje      #+#    #+#                 */
-/*   Updated: 2024/10/21 17:07:47 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/10/22 13:11:29 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,20 @@ bool	set_images(t_data **data)
 	t_data *tmp;
 
 	tmp = *data;
-	tmp->map->img[N_WALL] = new_image(tmp->mlx, tmp->map->n_image_location);
+	// tmp->map->img[N_WALL] = new_image(tmp->mlx, tmp->map->n_image_location);
+	tmp->map->img[N_WALL] = new_image(tmp->mlx, "images/diamond.xpm");
 	if (tmp->map->img[N_WALL].img_ptr == NULL)
 		return (false);
-	tmp->map->img[S_WALL] = new_image(tmp->mlx, tmp->map->s_image_location);
+	// tmp->map->img[S_WALL] = new_image(tmp->mlx, tmp->map->s_image_location);
+	tmp->map->img[S_WALL] = new_image(tmp->mlx, "images/diamond.xpm");
 	if (tmp->map->img[S_WALL].img_ptr == NULL)
 		return (false);
-	tmp->map->img[W_WALL] = new_image(tmp->mlx, tmp->map->w_image_location);
+	// tmp->map->img[W_WALL] = new_image(tmp->mlx, tmp->map->w_image_location);
+	tmp->map->img[W_WALL] = new_image(tmp->mlx, "images/diamond.xpm");
 	if (tmp->map->img[W_WALL].img_ptr == NULL)
 		return (false);
-	tmp->map->img[E_WALL] = new_image(tmp->mlx, tmp->map->e_image_location);
+	// tmp->map->img[E_WALL] = new_image(tmp->mlx, tmp->map->e_image_location);
+	tmp->map->img[E_WALL] = new_image(tmp->mlx, "images/diamond.xpm");
 	if (tmp->map->img[E_WALL].img_ptr == NULL)
 		return (false);
 	tmp->frame = new_empty_image(*data, SCREEN_WIDTH, SCREEN_HEIGHT);

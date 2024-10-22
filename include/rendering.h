@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/09/24 13:31:27 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/10/21 17:12:15 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/10/22 13:51:29 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct s_ray
 	int				side;
 	double			distance;
 	double			height;
+	double			wall_x;
 	t_image_index	index;
 }	t_ray;
 
