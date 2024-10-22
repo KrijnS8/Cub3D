@@ -6,7 +6,7 @@
 /*   By: kschelvi <kschelvi@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/09 14:04:48 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/10/15 12:57:00 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/10/22 16:05:44 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,22 +60,26 @@ static void	setup_side_step(t_cast_config *cast, t_ray *ray)
 	if (ray->dir.x < 0)
 	{
 		ray->step_x = -1;
-		ray->side_dist.x = (cast->pos.x - (double)ray->map_x) * ray->delta_dist.x;
+		ray->side_dist.x = \
+			(cast->pos.x - (double)ray->map_x) * ray->delta_dist.x;
 	}
 	else
 	{
 		ray->step_x = 1;
-		ray->side_dist.x = ((double)ray->map_x + 1.0 - cast->pos.x) * ray->delta_dist.x;
+		ray->side_dist.x = \
+			((double)ray->map_x + 1.0 - cast->pos.x) * ray->delta_dist.x;
 	}
 	if (ray->dir.y < 0)
 	{
 		ray->step_y = -1;
-		ray->side_dist.y = (cast->pos.y - (double)ray->map_y) * ray->delta_dist.y;
+		ray->side_dist.y = \
+			(cast->pos.y - (double)ray->map_y) * ray->delta_dist.y;
 	}
 	else
 	{
 		ray->step_y = 1;
-		ray->side_dist.y = ((double)ray->map_y + 1.0 - cast->pos.y) * ray->delta_dist.y;
+		ray->side_dist.y = \
+			((double)ray->map_y + 1.0 - cast->pos.y) * ray->delta_dist.y;
 	}
 }
 
@@ -88,7 +92,6 @@ static void	setup_side_step(t_cast_config *cast, t_ray *ray)
 void	setup_ray(t_cast_config *cast, t_ray *ray, int num)
 {
 	ray->camera_x = 2.0 * (double)num / (double)get_num_rays() - 1.0;
-	//printf("%f\t%d\n", ray->camera_x, num);
 	ray->dir.x = cast->dir.x + cast->plane.x * ray->camera_x;
 	ray->dir.y = cast->dir.y + cast->plane.y * ray->camera_x;
 	ray->map_x = (int)cast->pos.x;

@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/09/24 13:31:27 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/10/22 13:51:29 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/10/22 16:20:10 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ typedef struct s_cast_config
 typedef struct s_ray
 {
 	double			camera_x;
-	t_dpoint			dir;
-	t_dpoint			side_dist;
-	t_dpoint			delta_dist;
+	t_dpoint		dir;
+	t_dpoint		side_dist;
+	t_dpoint		delta_dist;
 	int				map_x;
 	int				map_y;
 	int				step_x;
@@ -75,13 +75,12 @@ void			setup_ray(t_cast_config *cast, t_ray *ray, int num);
 t_error			ray_casting(t_data *data, t_cast_config *cast, t_ray *rays);
 
 // Point functions
-t_dpoint			create_point(double x, double y);
+t_dpoint		create_point(double x, double y);
 
 // Image functions
 void			put_img_to_img(t_img dst, t_img src, int x, int y);
 void			put_pixel_img(t_img img, int x, int y, int color);
 unsigned int	get_pixel_img(t_img img, int x, int y);
-t_img			scale_image(t_data *data, t_img img, int new_width, int new_height);
 void			clear_img(t_img src);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/14 10:11:14 by splattje      #+#    #+#                 */
-/*   Updated: 2024/10/15 16:37:37 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/10/22 16:08:44 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,5 +110,7 @@ bool		check_map(t_map **map, int height, t_data *data);
 bool		set_images(t_data **data);
 
 t_degree	char_to_degree(char c);
+
+int			repl(t_data *data);
 
 #endif

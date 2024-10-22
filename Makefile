@@ -31,7 +31,6 @@ SRC = main.c \
 		degree/to_degree.c \
 		rendering/frame.c \
 		rendering/img.c \
-		rendering/img_utils.c \
 		rendering/ray_casting.c \
 		rendering/rendering.c \
 		rendering/setup_ray.c \

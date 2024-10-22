@@ -6,7 +6,7 @@
 /*   By: kschelvi <kschelvi@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/15 16:23:06 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/10/22 12:42:48 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/10/22 16:24:10 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,13 @@ unsigned int	get_pixel_img(t_img img, int x, int y)
 			+ (y * img.line_len) + (x * img.bpp / 8))));
 }
 
+/**
+ * @param dst image struct to the destination
+ * @param src image struct to the source
+ * @param x x coordinate
+ * @param y y coordinate
+ * @brief copies src onto dst on the given coordinates
+ */
 void	put_img_to_img(t_img dst, t_img src, int x, int y)
 {
 	int	i;
@@ -63,6 +70,10 @@ void	put_img_to_img(t_img dst, t_img src, int x, int y)
 	}
 }
 
+/**
+ * @param src img struct containing image info
+ * @brief fills image with black pixels
+ */
 void	clear_img(t_img src)
 {
 	int	y;
