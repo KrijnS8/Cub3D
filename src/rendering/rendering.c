@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 15:11:48 by kschelvi          #+#    #+#             */
-/*   Updated: 2024/10/23 10:09:39 by splattje         ###   ########.fr       */
+/*   Updated: 2024/10/23 10:11:14 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ t_error	render_frame(t_data *data, t_ray *rays)
 			j++;
 		render_wall(data, &(rays[i]), j, i);
 		i += j;
+		//break ;
 	}
 	return (ERR_OK);
 }
