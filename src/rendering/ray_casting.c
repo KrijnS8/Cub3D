@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 13:35:00 by kschelvi          #+#    #+#             */
-/*   Updated: 2024/10/22 15:25:27 by splattje         ###   ########.fr       */
+/*   Updated: 2024/10/23 10:44:03 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 /**
  * @param x x value
  * @param y y value
- * @return A point struct (t_point)
+ * @return A point struct (t_dpoint)
  */
-t_point	create_point(double x, double y)
+t_dpoint	create_point(double x, double y)
 {
-	t_point	point;
+	t_dpoint	point;
 
 	point.x = x;
 	point.y = y;
@@ -65,34 +65,35 @@ static void	dda(t_data *data, t_ray *ray)
 }
 
 /**
+ * @param player pointer to a player struct (t_player)
  * @param ray pointer to a ray struct (t_ray)
  * @brief Calculates the distance height and side an intersected ray has hit
  */
-static void	calculate_render_data(t_ray *ray)
+static void	calculate_render_data(t_player *player, t_ray *ray)
 {
+	double	wall_distance;
+
 	if (ray->hit == 2)
-	{
 		ray->index = DOOR;
-		if (ray->side == 0)
-			ray->distance = (ray->side_dist.x - ray->delta_dist.x);
-		else
-			ray->distance = (ray->side_dist.y - ray->delta_dist.y);
-	}
-	else if (ray->side == 0)
+	if (ray->side == 0)
 	{
 		ray->distance = (ray->side_dist.x - ray->delta_dist.x);
-		if (ray->dir.x < 0)
+		if (ray->dir.x < 0 && ray->index != DOOR)
 			ray->index = W_WALL;
-		else
+		else if (ray->index != DOOR)
 			ray->index = E_WALL;
+		wall_distance = player->p_y + 0.5 + (ray->distance * ray->dir.y);
+		ray->wall_x = fmod(wall_distance, 1);
 	}
 	else
 	{
 		ray->distance = (ray->side_dist.y - ray->delta_dist.y);
-		if (ray->dir.y < 0)
+		if (ray->dir.y < 0 && ray->index != DOOR)
 			ray->index = S_WALL;
-		else
+		else if (ray->index != DOOR)
 			ray->index = N_WALL;
+		wall_distance = player->p_x + 0.5 + (ray->distance * ray->dir.x);
+		ray->wall_x = fmod(wall_distance, 1);
 	}
 	ray->height = (int)(SCREEN_HEIGHT / ray->distance);
 }
@@ -114,8 +115,8 @@ t_error	ray_casting(t_data *data, t_cast_config *cast, t_ray *rays)
 	{
 		setup_ray(cast, &(rays[i]), i);
 		dda(data, &(rays[i]));
-		calculate_render_data(&(rays[i]));
-		//printf("Distance: %f\tHeight: %f\tSide: %d\n", rays[i].distance, rays[i].height, rays[i].index);
+		rays[i].index = 0;
+		calculate_render_data(&data->map->player, &(rays[i]));
 		i++;
 	}
 	return (ERR_OK);

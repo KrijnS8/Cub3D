@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 15:47:53 by splattje          #+#    #+#             */
-/*   Updated: 2024/10/22 14:40:59 by splattje         ###   ########.fr       */
+/*   Updated: 2024/10/23 10:42:09 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,29 +34,17 @@ static void	free_map_list(t_map_list *list)
  * @param images the images needed to be freed
  * @brief frees all the images)
  */
-static void	free_images(t_data *data, t_img images[47])
+static void	free_images(t_data *data, t_img images[5])
 {
 	int	index;
 
+	if (data->frame.img_ptr != NULL)
+		mlx_destroy_image(data->mlx, data->frame.img_ptr);
 	index = -1;
 	if (images != NULL)
 	{
-		while (images[++index].img_ptr != NULL && index < 40)
+		while (images[++index].img_ptr != NULL && index < 5)
 			mlx_destroy_image(data->mlx, images[index].img_ptr);
-		if (images[40].img_ptr != NULL)
-			mlx_destroy_image(data->mlx, images[40].img_ptr);
-		if (images[41].img_ptr != NULL)
-			mlx_destroy_image(data->mlx, images[41].img_ptr);
-		if (images[42].img_ptr != NULL)
-			mlx_destroy_image(data->mlx, images[42].img_ptr);
-		if (images[43].img_ptr != NULL)
-			mlx_destroy_image(data->mlx, images[43].img_ptr);
-		if (images[44].img_ptr != NULL)
-			mlx_destroy_image(data->mlx, images[44].img_ptr);
-		if (images[45].img_ptr != NULL)
-			mlx_destroy_image(data->mlx, images[45].img_ptr);
-		if (images[46].img_ptr != NULL)
-			mlx_destroy_image(data->mlx, images[46].img_ptr);
 	}
 }
 

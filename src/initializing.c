@@ -6,11 +6,13 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 15:35:17 by splattje          #+#    #+#             */
-/*   Updated: 2024/10/22 10:13:43 by splattje         ###   ########.fr       */
+/*   Updated: 2024/10/23 10:42:33 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
+#include "my_error.h"
+#include "rendering.h"
 
 /**
  * @return the initialized player struct
@@ -53,7 +55,7 @@ static t_map	*init_map(void)
 	map->map = NULL;
 	map->map_list = NULL;
 	index = -1;
-	while (++index < 47)
+	while (++index < 5)
 		map->img[index].img_ptr = NULL;
 	map->player = init_player();
 	map->doors = NULL;
@@ -78,5 +80,7 @@ t_data	*init_data(void)
 	data->win = NULL;
 	data->height = 0;
 	data->width = 0;
+	data->frame.addr = NULL;
+	data->frame.img_ptr = NULL;
 	return (data);
 }

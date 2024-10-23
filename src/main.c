@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 10:10:37 by splattje          #+#    #+#             */
-/*   Updated: 2024/10/22 10:18:03 by splattje         ###   ########.fr       */
+/*   Updated: 2024/10/23 10:42:41 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,11 @@ int	main(int argc, char **argv)
 	data->win = mlx_new_window(data->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "Cube");
 	if (data->win == NULL)
 		return (perror("Error\nMXL Window failed\n"), free_data(data), 1);
-	build_frame(data);
 	mlx_do_key_autorepeatoff(data->mlx);
 	mlx_hook(data->win, KeyPress, KeyPressMask, &handle_keypress, data);
 	mlx_hook(data->win, KeyRelease, KeyReleaseMask, &handle_release, data);
 	mlx_hook(data->win, DestroyNotify, StructureNotifyMask, &des_func, data);
 	mlx_mouse_move(data->mlx, data->win, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
-	mlx_loop_hook(data->mlx, &build_frame, data);
+	mlx_loop_hook(data->mlx, &repl, data);
 	mlx_loop(data->mlx);
 }

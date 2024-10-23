@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 10:11:14 by splattje          #+#    #+#             */
-/*   Updated: 2024/10/22 17:19:28 by splattje         ###   ########.fr       */
+/*   Updated: 2024/10/23 10:41:44 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@
 # include <stdbool.h>
 
 # include "degree.h"
+
+# define IMAGE_WIDTH 256
+# define IMAGE_HEIGHT 256
+
+typedef enum e_error	t_error;
 
 typedef enum e_image_index
 {
@@ -90,7 +95,7 @@ typedef struct s_map
 	char		*w_image_location;
 	char		*e_image_location;
 	char		*door_file_location;
-	t_img		img[47];
+	t_img		img[5];
 	char		*c_color;
 	char		*f_color;
 	int			c_color_hex;
@@ -106,6 +111,7 @@ typedef struct s_data
 	int		width;
 	void	*mlx;
 	void	*win;
+	t_img	frame;
 }	t_data;
 
 bool		parse_input(char *input, t_data **data);
@@ -123,6 +129,7 @@ bool		set_images(t_data **data);
 void		put_pixel_img(t_img img, int x, int y, int color);
 bool		check_door(t_map **map, t_data *data, int x, int y);
 t_door		*door_exists(t_data *data, int x, int y);
+void		do_movement(t_data *data);
 void		do_dirctional_calculations(t_data *data, double *dx, double *dy);
 void		move(t_door *doors, t_data *data, double dx, double dy);
 void		open_close_door(t_data *data, t_door *door);
@@ -132,5 +139,7 @@ bool		floor_fill(char **map, int y, int x, int height);
 bool		check_postion(char **map, int y, int x);
 
 t_degree	char_to_degree(char c);
+
+int			repl(t_data *data);
 
 #endif
