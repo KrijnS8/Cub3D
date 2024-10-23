@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 15:35:17 by splattje          #+#    #+#             */
-/*   Updated: 2024/10/15 14:21:28 by splattje         ###   ########.fr       */
+/*   Updated: 2024/10/22 10:13:43 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,14 @@ static t_map	*init_map(void)
 	map->s_image_location = NULL;
 	map->e_image_location = NULL;
 	map->w_image_location = NULL;
+	map->door_file_location = NULL;
 	map->map = NULL;
 	map->map_list = NULL;
 	index = -1;
-	while (++index < 46)
+	while (++index < 47)
 		map->img[index].img_ptr = NULL;
 	map->player = init_player();
+	map->doors = NULL;
 	return (map);
 }
 

@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 13:57:33 by splattje          #+#    #+#             */
-/*   Updated: 2024/10/15 14:06:36 by splattje         ###   ########.fr       */
+/*   Updated: 2024/10/23 09:12:37 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,15 @@ static t_img	new_image(t_data *data, t_image_index i_index)
 	else if (i_index == W_WALL)
 		img.img_ptr = mlx_xpm_file_to_image(data->mlx,
 				data->map->w_image_location, &img.w, &img.h);
+	else if (i_index == DOOR)
+	{
+		if (data->map->door_file_location != NULL)
+			img.img_ptr = mlx_xpm_file_to_image(data->mlx,
+					data->map->door_file_location, &img.w, &img.h);
+		else
+			img.img_ptr = mlx_xpm_file_to_image(data->mlx,
+				data->map->e_image_location, &img.w, &img.h);
+	}
 	else
 		img.img_ptr = mlx_xpm_file_to_image(data->mlx,
 				data->map->e_image_location, &img.w, &img.h);
@@ -115,11 +124,11 @@ bool	set_images(t_data **data)
 	int	index;
 
 	index = -1;
-	while (++index < 46)
+	while (++index < 47)
 	{
 		if (index == 40 || index == 41)
 			(*data)->map->img[index] = new_empty_image(*data);
-		else if (index >= 42 && index <= 45)
+		else if (index >= 42 && index <= 46)
 			(*data)->map->img[index] = new_image(*data, index - 42);
 		else
 			(*data)->map->img[index] = new_image(*data, N_WALL);

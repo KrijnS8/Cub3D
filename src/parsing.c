@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 14:08:51 by splattje          #+#    #+#             */
-/*   Updated: 2024/10/14 09:56:02 by splattje         ###   ########.fr       */
+/*   Updated: 2024/10/23 09:12:56 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ bool	read_map(int fd, t_data **data)
 	}
 	if (line != NULL)
 		free(line);
-	if (trimmed == NULL)
-		free(trimmed);
 	return (true);
 }
 
@@ -91,28 +89,39 @@ char	**map_to_array(t_map_list *map, t_data **data)
 char	**set_map_values(t_map_list *map, int index)
 {
 	char		**result;
-	t_map_list	*tmp;
+	int			max;
 
-	result = ft_calloc(sizeof(char *), 6);
+	if (ft_strncmp(map->next->next->next->next->line, "DOOR", 4) == 0)
+		max = 7;
+	else
+		max = 6;
+	result = ft_calloc(sizeof(char *), max);
 	if (result == NULL)
 		return (perror("Error\nMalloc failed\n"), NULL);
-	while (++index < 6)
+	while (++index < max)
 	{
 		if (index < 4)
 			result[index] = set_map_info(map, 3);
 		else if (index == 4)
 		{
-			tmp = map->next;
-			map = tmp;
-			result[index] = set_map_info(map, 2);
+			if (ft_strncmp(map->line, "DOOR", 4) == 0)
+			{
+				result[index] = set_map_info(map, 5);
+				map = map->next->next;
+				result[++index] = set_map_info(map, 2);
+			}
+			else
+			{
+				map = map->next;
+				result[index] = set_map_info(map, 2);
+			}
 		}
 		else
 			result[index] = set_map_info(map, 2);
 		if (result[index] == NULL)
 			return (perror("Error\nMalloc failed\n"),
 				free_2d_array(result), NULL);
-		tmp = map->next;
-		map = tmp;
+		map = map->next;
 	}
 	return (result);
 }
@@ -139,9 +148,11 @@ bool	parse_map(t_data **data)
 	(*data)->map->s_image_location = map_values[1];
 	(*data)->map->w_image_location = map_values[2];
 	(*data)->map->e_image_location = map_values[3];
-	(*data)->map->f_color = map_values[4];
-	(*data)->map->c_color = map_values[5];
-	index = -1;
+	index = 4;
+	if (ft_strncmp(map_values[index], "images", 6) == 0)
+		(*data)->map->door_file_location = map_values[index++];
+	(*data)->map->f_color = map_values[index++];
+	(*data)->map->c_color = map_values[index];
 	(*data)->map->map = map_array;
 	free(map_values);
 	return (true);
@@ -178,7 +189,7 @@ bool	parse_input(char *input, t_data **data)
 	close(fd);
 	if (!parse_map(data))
 		return (false);
-	if (!check_map(&(*data)->map, (*data)->height, *data))
+	if (!check_map(&(*data)->map, *data))
 		return (false);
 	return (true);
 }
