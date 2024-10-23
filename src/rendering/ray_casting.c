@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   ray_casting.c                                      :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: splattje <splattje@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/09/24 13:35:00 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/10/22 16:24:36 by kschelvi      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   ray_casting.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/24 13:35:00 by kschelvi          #+#    #+#             */
+/*   Updated: 2024/10/23 09:52:43 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ t_dpoint	create_point(double x, double y)
  */
 static void	dda(t_data *data, t_ray *ray)
 {
+	t_door	*door;
+
 	while (ray->hit == 0)
 	{
 		if (ray->side_dist.x < ray->side_dist.y)
@@ -51,7 +53,13 @@ static void	dda(t_data *data, t_ray *ray)
 			ray->map_y += ray->step_y;
 			ray->side = 1;
 		}
-		if (data->map->map[ray->map_y][ray->map_x] == '1')
+		if (data->map->map[ray->map_y][ray->map_x] == 'D')
+		{
+			door = door_exists(data, ray->map_x, ray->map_y);
+			if (door->state != D_OPEN)
+				ray->hit = 2;
+		}
+		else if (data->map->map[ray->map_y][ray->map_x] == '1')
 			ray->hit = true;
 	}
 }
@@ -63,14 +71,16 @@ static void	dda(t_data *data, t_ray *ray)
  */
 static void	calculate_render_data(t_player *player, t_ray *ray)
 {
-	double	wall_distance;
+	double wall_distance;
 
-	if (ray->side == 0)
+	if (ray->hit == 2)
+		ray->index = DOOR;
+	else if (ray->side == 0)
 	{
 		ray->distance = (ray->side_dist.x - ray->delta_dist.x);
-		if (ray->dir.x < 0)
+		if (ray->dir.x < 0 && ray->index != DOOR)
 			ray->index = W_WALL;
-		else
+		else if (ray->index != DOOR)
 			ray->index = E_WALL;
 		wall_distance = player->p_y + 0.5 + (ray->distance * ray->dir.y);
 		ray->wall_x = fmod(wall_distance, 1);
@@ -78,9 +88,9 @@ static void	calculate_render_data(t_player *player, t_ray *ray)
 	else
 	{
 		ray->distance = (ray->side_dist.y - ray->delta_dist.y);
-		if (ray->dir.y < 0)
+		if (ray->dir.y < 0 && ray->index != DOOR)
 			ray->index = S_WALL;
-		else
+		else if (ray->index != DOOR)
 			ray->index = N_WALL;
 		wall_distance = player->p_x + 0.5 + (ray->distance * ray->dir.x);
 		ray->wall_x = fmod(wall_distance, 1);

@@ -23,6 +23,8 @@ SRC = main.c \
 		parsing.c \
 		parsing_utils.c \
 		map_checking.c \
+		map_checking_utils.c \
+		map_checking_utils2.c \
 		set_wall_images.c \
 		repl.c \
 		my_error.c \
@@ -36,6 +38,7 @@ SRC = main.c \
 		rendering/setup_ray.c \
 		gameplay/key_hooks.c \
 		gameplay/get_time.c \
+		gameplay/gameplay_utils.c \
 		char_to_degree.c
 		
 

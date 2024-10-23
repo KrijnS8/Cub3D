@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   freeing.c                                          :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: splattje <splattje@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/08/15 15:47:53 by splattje      #+#    #+#                 */
-/*   Updated: 2024/10/15 16:17:30 by kschelvi      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   freeing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/15 15:47:53 by splattje          #+#    #+#             */
+/*   Updated: 2024/10/23 09:54:12 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	free_map_list(t_map_list *list)
  * @param images the images needed to be freed
  * @brief frees all the images)
  */
-static void	free_images(t_data *data, t_img images[46])
+static void	free_images(t_data *data, t_img images[4])
 {
 	int	index;
 
@@ -54,6 +54,8 @@ static void	free_images(t_data *data, t_img images[46])
  */
 void	free_map(t_map *map)
 {
+	t_door	*tmp;
+
 	free_map_list(map->map_list);
 	if (map->map != NULL)
 		free_2d_array(map->map);
@@ -69,6 +71,14 @@ void	free_map(t_map *map)
 		free(map->w_image_location);
 	if (map->e_image_location != NULL)
 		free(map->e_image_location);
+	if (map->door_file_location != NULL)
+		free(map->door_file_location);
+	while (map->doors != NULL)
+	{
+		tmp = map->doors->next;
+		free(map->doors);
+		map->doors = tmp;
+	}
 }
 
 /**

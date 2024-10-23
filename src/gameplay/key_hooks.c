@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 15:27:09 by splattje          #+#    #+#             */
-/*   Updated: 2024/10/16 11:27:11 by splattje         ###   ########.fr       */
+/*   Updated: 2024/10/22 17:18:30 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,35 @@
 #include "gameplay.h"
 #include "rendering.h"
 #include <math.h>
-#ifndef M_PI
-# define M_PI 3.14159265358979323846
-#endif
+
+void	door_status_change(t_data *data, double start_x, double start_y,
+	t_door *door)
+{
+	double	dx;
+	double	dy;
+
+	dx = cos(degree_to_radian(data->map->player.p_angle))
+		* -data->map->player.move_fb * 0.25;
+	dy = sin(degree_to_radian(data->map->player.p_angle))
+		* -data->map->player.move_fb * 0.25;
+	while (door != NULL)
+	{
+		while (start_y < 1.6)
+		{
+			while (start_x < 1.6)
+			{
+				if ((int)(data->map->player.p_y
+					+ dy + start_y) == door->y
+					&& (int)(data->map->player.p_x
+					+ dx + start_x) == door->x)
+					return (open_close_door(data, door));
+				start_x += 0.1;
+			}
+			start_y += 0.1;
+		}
+		door = door->next;
+	}
+}
 
 /**
  * @param data poiner to the main data struct (t_data)
@@ -25,30 +51,19 @@
  */
 void	do_movement(t_data *data)
 {
-	double			dx;
-	double			dy;
+	double	dx;
+	double	dy;
+	t_door	*doors;
 
 	dx = 0;
 	dy = 0;
-	if (data->map->player.move_fb != 0)
-	{
-		dx += cos(degree_to_radian(data->map->player.p_angle))
-			* -data->map->player.move_fb * 0.25;
-		dy += sin(degree_to_radian(data->map->player.p_angle))
-			* -data->map->player.move_fb * 0.25;
-	}
-	if (data->map->player.move_lr != 0)
-	{
-		dx += cos(degree_to_radian(data->map->player.p_angle) + (M_PI / 2.0))
-			* data->map->player.move_lr * 0.25;
-		dy += sin(degree_to_radian(data->map->player.p_angle) + (M_PI / 2.0))
-			* data->map->player.move_lr * 0.25;
-	}
+	do_dirctional_calculations(data, &dx, &dy);
 	if (data->map->map[(int)(data->map->player.p_y + dy + 0.5)]
 		[(int)(data->map->player.p_x + dx + 0.5)] != '1')
 	{
-		data->map->player.p_x += dx;
-		data->map->player.p_y += dy;
+		doors = door_exists(data, (int)(data->map->player.p_x + dx + 0.5),
+				(int)(data->map->player.p_y + dy + 0.5));
+		move(doors, data, dx, dy);
 	}
 }
 
@@ -69,6 +84,8 @@ int	handle_keypress(int keysym, t_data *data)
 		if (keysym == XK_Right)
 			data->map->player.looking = 1;
 	}
+	else if (keysym == XK_e)
+		door_status_change(data, -0.5, -0.5, data->map->doors);
 	else
 	{
 		if (keysym == XK_w)

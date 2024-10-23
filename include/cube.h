@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   cube.h                                             :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: splattje <splattje@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/05/14 10:11:14 by splattje      #+#    #+#                 */
-/*   Updated: 2024/10/22 16:08:44 by kschelvi      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   cube.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/14 10:11:14 by splattje          #+#    #+#             */
+/*   Updated: 2024/10/23 09:53:57 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,16 @@ typedef enum e_image_index
 	N_WALL = 0,
 	S_WALL = 1,
 	W_WALL = 2,
-	E_WALL = 3
+	E_WALL = 3,
+	DOOR = 4
 }	t_image_index;
+
+typedef enum e_door_state
+{
+	D_CLOSE = 0,
+	D_OPEN = 1,
+	D_CHANGE = 2
+}	t_door_state;
 
 typedef struct s_img
 {
@@ -70,6 +78,14 @@ typedef struct s_player
 	int			looking;
 }	t_player;
 
+typedef struct s_door
+{
+	int				x;
+	int				y;
+	t_door_state	state;
+	struct s_door	*next;
+}	t_door;
+
 typedef struct s_map
 {
 	t_map_list	*map_list;
@@ -78,11 +94,13 @@ typedef struct s_map
 	char		*s_image_location;
 	char		*w_image_location;
 	char		*e_image_location;
+	char		*door_file_location;
 	t_img		img[4];
 	char		*c_color;
 	char		*f_color;
 	int			c_color_hex;
 	int			f_color_hex;
+	t_door		*doors;
 	t_player	player;
 }	t_map;
 
@@ -106,8 +124,18 @@ void		map_list_add_back(t_data **head, t_map_list *new);
 char		*set_map_info(t_map_list *head, int skip);
 void		free_2d_array(char **array);
 void		get_map_height_width(t_data **data);
-bool		check_map(t_map **map, int height, t_data *data);
+bool		check_map(t_map **map, t_data *data);
 bool		set_images(t_data **data);
+void		put_pixel_img(t_img img, int x, int y, int color);
+bool		check_door(t_map **map, t_data *data, int x, int y);
+t_door		*door_exists(t_data *data, int x, int y);
+void		do_dirctional_calculations(t_data *data, double *dx, double *dy);
+void		move(t_door *doors, t_data *data, double dx, double dy);
+void		open_close_door(t_data *data, t_door *door);
+bool		check_door_file(t_map **map);
+bool		check_door_floor(t_map **map, int x, int y, t_data *data);
+bool		floor_fill(char **map, int y, int x, int height);
+bool		check_postion(char **map, int y, int x);
 
 t_degree	char_to_degree(char c);
 

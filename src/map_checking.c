@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   map_checking.c                                     :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: splattje <splattje@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/08/22 09:51:23 by splattje      #+#    #+#                 */
-/*   Updated: 2024/10/15 16:19:49 by kschelvi      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   map_checking.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/22 09:51:23 by splattje          #+#    #+#             */
+/*   Updated: 2024/10/23 09:55:10 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,28 +21,28 @@
  * @brief checks if open spaces in the map are adjacent to other open spaces
  * or walls
  */
-static bool	floor_fill(char **map, int y, int x, int height)
+bool	floor_fill(char **map, int y, int x, int height)
 {
 	if (map[y][x] == '0')
 	{
 		if (y - 1 < 0 || y + 1 > height || x - 1 < 0
 			|| x + 1 > (int)ft_strlen(map[y]))
 			return (false);
-		if (map[y - 1][x] != '1' && map[y - 1][x] != '0')
+		if (!check_postion(map, y - 1, x))
 			return (false);
-		if (map[y + 1][x] != '1' && map[y + 1][x] != '0')
+		if (!check_postion(map, y + 1, x))
 			return (false);
-		if (map[y][x - 1] != '1' && map[y][x - 1] != '0')
+		if (!check_postion(map, y, x - 1))
 			return (false);
-		if (map[y][x + 1] != '1' && map[y][x + 1] != '0')
+		if (!check_postion(map, y, x + 1))
 			return (false);
-		if (map[y - 1][x - 1] != '1' && map[y - 1][x - 1] != '0')
+		if (!check_postion(map, y - 1, x - 1))
 			return (false);
-		if (map[y + 1][x + 1] != '1' && map[y + 1][x + 1] != '0')
+		if (!check_postion(map, y + 1, x + 1))
 			return (false);
-		if (map[y + 1][x - 1] != '1' && map[y + 1][x - 1] != '0')
+		if (!check_postion(map, y + 1, x - 1))
 			return (false);
-		if (map[y - 1][x + 1] != '1' && map[y - 1][x + 1] != '0')
+		if (!check_postion(map, y - 1, x + 1))
 			return (false);
 	}
 	return (true);
@@ -109,6 +109,11 @@ static bool	check_wall_file(t_map **map)
 	if (fd == -1)
 		return (perror("Error\nfailed to open file\n"), (false));
 	close(fd);
+	if ((*map)->door_file_location != NULL)
+	{
+		if (!check_door_file(map))
+			return (false);
+	}
 	return (true);
 }
 
@@ -123,26 +128,26 @@ static int	floor_ceiling_rgb(char *rgb_string)
 	int	g;
 	int	b;
 	int	index;
-	int	hex_value;
 
 	index = -1;
 	r = 0;
-	while (rgb_string[++index] != ',' && rgb_string[index] != '\0')
+	if (ft_strlen(rgb_string) < 5 || ft_strlen(rgb_string) > 11)
+		return (-1);
+	while (ft_isdigit(rgb_string[++index]))
 		r = r * 10 + (rgb_string[index] - '0');
 	if (r < 0 || r > 255)
 		return (-1);
 	g = 0;
-	while (rgb_string[++index] != ',' && rgb_string[index] != '\0')
+	while (ft_isdigit(rgb_string[++index]))
 		g = g * 10 + (rgb_string[index] - '0');
 	if (g < 0 || g > 255)
 		return (-1);
 	b = 0;
-	while (rgb_string[++index] != '\0')
+	while (ft_isdigit(rgb_string[++index]))
 		b = b * 10 + (rgb_string[index] - '0');
-	if (b < 0 || b > 255)
+	if (b < 0 || b > 255 || rgb_string[index] != '\0')
 		return (-1);
-	hex_value = (r << 16) | (g << 8) | b;
-	return (hex_value);
+	return ((r << 16) | (g << 8) | b);
 }
 
 /**
@@ -151,7 +156,7 @@ static int	floor_ceiling_rgb(char *rgb_string)
  * @return true if only one player is in the map and the map has a valid floor
  * @brief checks if the map contains one player and if the floor is valid
  */
-bool	check_map(t_map **map, int height, t_data *data)
+bool	check_map(t_map **map, t_data *data)
 {
 	int		y;
 	size_t	x;
@@ -163,9 +168,8 @@ bool	check_map(t_map **map, int height, t_data *data)
 	while ((*map)->map[++y] != NULL)
 	{
 		x = -1;
-		while ((*map)->map[y][++x] != '\0')
-			if (!floor_fill((*map)->map, y, x, height))
-				return (false);
+		if (!check_door_floor(map, x, y, data))
+			return (false);
 	}
 	(*map)->map[(int)(*map)->player.p_y][(int)(*map)->player.p_x]
 		= (*map)->player.p_face;

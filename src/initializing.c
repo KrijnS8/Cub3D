@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   initializing.c                                     :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: splattje <splattje@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/08/15 15:35:17 by splattje      #+#    #+#                 */
-/*   Updated: 2024/10/15 16:37:19 by kschelvi      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   initializing.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/15 15:35:17 by splattje          #+#    #+#             */
+/*   Updated: 2024/10/23 09:54:46 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,14 @@ static t_map	*init_map(void)
 	map->s_image_location = NULL;
 	map->e_image_location = NULL;
 	map->w_image_location = NULL;
+	map->door_file_location = NULL;
 	map->map = NULL;
 	map->map_list = NULL;
 	index = -1;
 	while (++index < 4)
 		map->img[index].img_ptr = NULL;
 	map->player = init_player();
+	map->doors = NULL;
 	return (map);
 }
 
