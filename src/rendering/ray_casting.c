@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 13:35:00 by kschelvi          #+#    #+#             */
-/*   Updated: 2024/10/23 10:12:34 by splattje         ###   ########.fr       */
+/*   Updated: 2024/10/23 10:31:48 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ t_error	ray_casting(t_data *data, t_cast_config *cast, t_ray *rays)
 	{
 		setup_ray(cast, &(rays[i]), i);
 		dda(data, &(rays[i]));
+		rays[i].index = 0;
 		calculate_render_data(&data->map->player, &(rays[i]));
 		i++;
 	}

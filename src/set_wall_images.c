@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 13:57:33 by splattje          #+#    #+#             */
-/*   Updated: 2024/10/23 10:11:41 by splattje         ###   ########.fr       */
+/*   Updated: 2024/10/23 10:21:00 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,12 @@ bool	set_images(t_data **data)
 	tmp->map->img[E_WALL] = new_image(tmp->mlx, tmp->map->e_image_location);
 	if (tmp->map->img[E_WALL].img_ptr == NULL)
 		return (false);
+	if (tmp->map->door_file_location != NULL)
+	{
+		tmp->map->img[DOOR] = new_image(tmp->mlx, tmp->map->door_file_location);
+		if (tmp->map->img[DOOR].img_ptr == NULL)
+			return (false);
+	}
 	tmp->frame = new_empty_image(*data, SCREEN_WIDTH, SCREEN_HEIGHT);
 	if (tmp->frame.img_ptr == NULL)
 		return (false);

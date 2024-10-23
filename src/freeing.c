@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 15:47:53 by splattje          #+#    #+#             */
-/*   Updated: 2024/10/23 09:59:21 by splattje         ###   ########.fr       */
+/*   Updated: 2024/10/23 10:25:11 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	free_map_list(t_map_list *list)
  * @param images the images needed to be freed
  * @brief frees all the images)
  */
-static void	free_images(t_data *data, t_img images[4])
+static void	free_images(t_data *data, t_img images[5])
 {
 	int	index;
 
@@ -43,7 +43,7 @@ static void	free_images(t_data *data, t_img images[4])
 	index = -1;
 	if (images != NULL)
 	{
-		while (images[++index].img_ptr != NULL && index < 4)
+		while (images[++index].img_ptr != NULL && index < 5)
 			mlx_destroy_image(data->mlx, images[index].img_ptr);
 	}
 }

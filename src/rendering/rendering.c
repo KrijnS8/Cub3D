@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 15:11:48 by kschelvi          #+#    #+#             */
-/*   Updated: 2024/10/23 10:13:43 by splattje         ###   ########.fr       */
+/*   Updated: 2024/10/23 10:35:52 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,6 @@ static void	render_wall(t_data *data, t_ray *rays, \
 							int n_rays, int location_rays)
 {
 	int			i;
-	int			j;
-	t_ipoint	wall;
 
 	i = 0;
 	while (i < n_rays)
@@ -135,7 +133,6 @@ t_error	render_frame(t_data *data, t_ray *rays)
 			j++;
 		render_wall(data, &(rays[i]), j, i);
 		i += j;
-		//break ;
 	}
 	return (ERR_OK);
 }

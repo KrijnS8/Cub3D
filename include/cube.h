@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 10:11:14 by splattje          #+#    #+#             */
-/*   Updated: 2024/10/23 10:11:22 by splattje         ###   ########.fr       */
+/*   Updated: 2024/10/23 10:15:06 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ bool		set_images(t_data **data);
 void		put_pixel_img(t_img img, int x, int y, int color);
 bool		check_door(t_map **map, t_data *data, int x, int y);
 t_door		*door_exists(t_data *data, int x, int y);
+void		do_movement(t_data *data);
 void		do_dirctional_calculations(t_data *data, double *dx, double *dy);
 void		move(t_door *doors, t_data *data, double dx, double dy);
 void		open_close_door(t_data *data, t_door *door);
