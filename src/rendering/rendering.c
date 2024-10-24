@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/15 15:11:48 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/10/24 15:29:38 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/10/24 15:37:31 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,30 +35,33 @@ static int	get_line_width(void)
  */
 static void	render_ray(t_data *data, t_ray *rays, int i)
 {
-	int			x;
-	int			y;
-	int			line_start;
+	t_ipoint	pos;
 	t_ipoint	src;
+	const int	line_start = (SCREEN_HEIGHT - rays[i].height) / 2;
+	const int	line_width = get_line_width();
 
-	x = get_line_width() * i;
-	line_start = (SCREEN_HEIGHT - rays[i].height) / 2;
-	y = 0;
-	while (y < SCREEN_HEIGHT)
+	pos.x = line_width * i;
+	pos.y = 0;
+	while (pos.y < SCREEN_HEIGHT)
 	{
-		if (y < line_start)
-			put_line_to_image(data->frame, create_ipoint(x, y), get_line_width(), data->map->c_color_hex);
-		else if (y > line_start + rays[i].height - 1)
-			put_line_to_image(data->frame, create_ipoint(x, y), get_line_width(), data->map->f_color_hex);
+		if (pos.y < line_start)
+			put_line_to_image(data->frame, pos, \
+								line_width, data->map->c_color_hex);
+		else if (pos.y > line_start + rays[i].height - 1)
+			put_line_to_image(data->frame, pos, \
+								line_width, data->map->f_color_hex);
 		else
 		{
 			src.x = rays[i].wall_x * data->map->img[rays[i].index].w;
-			src.y = (int)(y - line_start) * \
+			src.y = (int)(pos.y - line_start) *\
 				(double)data->map->img[rays[i].index].h / rays[i].height;
-			put_line_to_image(data->frame, create_ipoint(x, y), get_line_width(), get_pixel_img(data->map->img[rays[i].index], src.x, src.y));
+			put_line_to_image(data->frame, pos, line_width, \
+				get_pixel_img(data->map->img[rays[i].index], src.x, src.y));
 		}
-		y++;
+		pos.y++;
 	}
 }
+
 /**
  * @param data pointer to the main data struct (t_data)
  * @param rays pointer to an array of ray structs (t_ray)
