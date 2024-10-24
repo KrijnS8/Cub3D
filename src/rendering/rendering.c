@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/15 15:11:48 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/10/24 16:15:11 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/10/24 16:46:04 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,11 @@ static void	render_ray(t_data *data, t_ray *rays, int i)
  * @param offset offset to sides of the screen
  * @brief renders the player on the minimap
  */
-void render_player_minimap(t_data *data, int block_size, int offset)
+void	render_player_minimap(t_data *data, int block_size, int offset)
 {
-    int player_size;
-    int player_x;
-    int player_y;
+	int	player_size;
+	int	player_x;
+	int	player_y;
 	int	i;
 
 	player_size = block_size * 3 / 4;
@@ -81,7 +81,8 @@ void render_player_minimap(t_data *data, int block_size, int offset)
 	i = 0;
 	while (i < player_size)
 	{
-		put_line_to_image(data->frame, create_ipoint(player_x, player_y + i), player_size, 0xdc143c);
+		put_line_to_image(data->frame, create_ipoint(player_x, player_y + i), \
+							player_size, 0xdc143c);
 		i++;
 	}
 }
@@ -90,10 +91,11 @@ void render_player_minimap(t_data *data, int block_size, int offset)
  * @param data pointer to the main data struct (t_data)
  * @brief renders the minimap on the frame
  */
-void render_minimap(t_data *data)
+void	render_minimap(t_data *data)
 {
-	int	x;
-	int	y;
+	int			x;
+	int			y;
+	int			i;
 	const int	block_size = 15;
 	const int	offset = 40;
 
@@ -105,8 +107,11 @@ void render_minimap(t_data *data)
 		{
 			if (data->map->map[y][x] == '1')
 			{
-				for (int i = 0; i < block_size; i++)
-					put_line_to_image(data->frame, create_ipoint(x * block_size + offset, y * block_size + i + offset), block_size, 0xccffff);
+				i = 0;
+				while (i++ < block_size)
+					put_line_to_image(data->frame, \
+						create_ipoint(x * block_size + offset, y * \
+							block_size + i - 1 + offset), block_size, 0xccffff);
 			}
 			x++;
 		}
