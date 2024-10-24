@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   img.c                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/15 16:23:06 by kschelvi          #+#    #+#             */
-/*   Updated: 2024/10/23 10:11:52 by splattje         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   img.c                                              :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: splattje <splattje@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/10/15 16:23:06 by kschelvi      #+#    #+#                 */
+/*   Updated: 2024/10/24 15:29:08 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,28 @@ void	clear_img(t_img src)
 		}
 		y++;
 	}
+}
+
+/**
+ * @param img img struct containing image info
+ * @param pos point struct containing position
+ * @param length length of the line
+ * @param color color of the line
+ * @brief sets a line of given length at the given position
+ */
+void	put_line_to_image(t_img img, t_ipoint pos, int length, int color)
+{
+	int		x;
+	int		y;
+	int		i;
+	char	*dst;
+
+	if (color == (int)0xFF000000 || length <= 0)
+		return ;
+	x = pos.x;
+	y = pos.y;
+	dst = img.addr + (y * img.line_len + x * (img.bpp / 8));
+	i = 0;
+	while (i++ < length)
+		*(unsigned int *)(dst + (i - 1) * (img.bpp / 8)) = color;
 }

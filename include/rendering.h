@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   rendering.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/24 13:31:27 by kschelvi          #+#    #+#             */
-/*   Updated: 2024/10/23 10:11:29 by splattje         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   rendering.h                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: splattje <splattje@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/09/24 13:31:27 by kschelvi      #+#    #+#                 */
+/*   Updated: 2024/10/24 15:06:37 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,14 @@ void			setup_ray(t_cast_config *cast, t_ray *ray, int num);
 t_error			ray_casting(t_data *data, t_cast_config *cast, t_ray *rays);
 
 // Point functions
-t_dpoint		create_point(double x, double y);
+t_dpoint		create_dpoint(double x, double y);
+t_ipoint		create_ipoint(double x, double y);
 
 // Image functions
 void			put_img_to_img(t_img dst, t_img src, int x, int y);
 void			put_pixel_img(t_img img, int x, int y, int color);
 unsigned int	get_pixel_img(t_img img, int x, int y);
+void 			put_line_to_image(t_img img, t_ipoint pos, int length, int color);
 void			clear_img(t_img src);
 
 #endif

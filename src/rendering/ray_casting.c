@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ray_casting.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/24 13:35:00 by kschelvi          #+#    #+#             */
-/*   Updated: 2024/10/23 10:44:03 by splattje         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   ray_casting.c                                      :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: splattje <splattje@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/09/24 13:35:00 by kschelvi      #+#    #+#                 */
+/*   Updated: 2024/10/24 14:41:39 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,23 @@
  * @param y y value
  * @return A point struct (t_dpoint)
  */
-t_dpoint	create_point(double x, double y)
+t_dpoint	create_dpoint(double x, double y)
 {
 	t_dpoint	point;
+
+	point.x = x;
+	point.y = y;
+	return (point);
+}
+
+/**
+ * @param x x value
+ * @param y y value
+ * @return A point struct (t_ipoint)
+ */
+t_ipoint	create_ipoint(double x, double y)
+{
+	t_ipoint	point;
 
 	point.x = x;
 	point.y = y;

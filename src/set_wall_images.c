@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   set_wall_images.c                                  :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/24 13:57:33 by splattje          #+#    #+#             */
-/*   Updated: 2024/10/23 10:43:13 by splattje         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   set_wall_images.c                                  :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: splattje <splattje@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/09/24 13:57:33 by splattje      #+#    #+#                 */
+/*   Updated: 2024/10/24 15:10:57 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,3 +87,32 @@ bool	set_images(t_data **data)
 		return (false);
 	return (true);
 }
+
+// bool	set_images(t_data **data)
+// {
+// 	t_data	*tmp;
+
+// 	tmp = *data;
+// 	tmp->map->img[N_WALL] = new_image(tmp->mlx, "images/diamond.xpm");
+// 	if (tmp->map->img[N_WALL].img_ptr == NULL)
+// 		return (false);
+// 	tmp->map->img[S_WALL] = new_image(tmp->mlx, "images/diamond.xpm");
+// 	if (tmp->map->img[S_WALL].img_ptr == NULL)
+// 		return (false);
+// 	tmp->map->img[W_WALL] = new_image(tmp->mlx, "images/diamond.xpm");
+// 	if (tmp->map->img[W_WALL].img_ptr == NULL)
+// 		return (false);
+// 	tmp->map->img[E_WALL] = new_image(tmp->mlx, "images/diamond.xpm");
+// 	if (tmp->map->img[E_WALL].img_ptr == NULL)
+// 		return (false);
+// 	if (tmp->map->door_file_location != NULL)
+// 	{
+// 		tmp->map->img[DOOR] = new_image(tmp->mlx, tmp->map->door_file_location);
+// 		if (tmp->map->img[DOOR].img_ptr == NULL)
+// 			return (false);
+// 	}
+// 	tmp->frame = new_empty_image(*data, SCREEN_WIDTH, SCREEN_HEIGHT);
+// 	if (tmp->frame.img_ptr == NULL)
+// 		return (false);
+// 	return (true);
+// }

@@ -7,7 +7,7 @@ A 42 network project
 - [x] image size is not perfect fit for screen size
 - [x] merge new rendering with main bransh
 - [ ] minimap on screen
-- [ ] fix render performance
+- [x] fix render performance
 - [ ] code cleanup and testing
 
 notes

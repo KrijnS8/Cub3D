@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   frame.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/24 13:43:45 by kschelvi          #+#    #+#             */
-/*   Updated: 2024/10/23 10:43:37 by splattje         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   frame.c                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: splattje <splattje@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/09/24 13:43:45 by kschelvi      #+#    #+#                 */
+/*   Updated: 2024/10/24 12:32:40 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	cast_setup(t_data *data, t_cast_config *cast)
 {
 	double	right_x;
 	double	right_y;
+	double	length;
 
 	cast->pos.x = data->map->player.p_x + 0.5;
 	cast->pos.y = data->map->player.p_y + 0.5;
@@ -30,8 +31,9 @@ void	cast_setup(t_data *data, t_cast_config *cast)
 	cast->dir.y = sin(degree_to_radian(data->map->player.p_angle));
 	right_x = -cast->dir.y;
 	right_y = cast->dir.x;
-	cast->plane.x = right_x / sqrt(right_x * right_x + right_y * right_y);
-	cast->plane.y = right_y / sqrt(right_x * right_x + right_y * right_y);
+	length = sqrt(right_x * right_x + right_y * right_y);
+	cast->plane.x = right_x / length;
+	cast->plane.y = right_y / length;
 }
 
 /**
@@ -43,23 +45,7 @@ int	build_frame(t_data *data)
 {
 	t_ray			rays[(int)(FIELD_OF_VIEW / RAY_ANGLE_DELTA)];
 	t_cast_config	cast;
-	int				x;
-	int				y;
 
-	data->map->player.p_angle = degree_add(
-			int_to_degree(data->map->player.looking),
-			data->map->player.p_angle);
-	do_movement(data);
-	mlx_mouse_get_pos(data->mlx, data->win, &x, &y);
-	if (x < (SCREEN_WIDTH / 4) && x > -1)
-		data->map->player.p_angle = degree_add(
-				int_to_degree(-1), data->map->player.p_angle);
-	else if (x > (SCREEN_WIDTH / 4) * 3 && x < SCREEN_WIDTH + 1)
-		data->map->player.p_angle = degree_add(
-				int_to_degree(1), data->map->player.p_angle);
-	else
-		data->map->player.p_angle = degree_add(
-				int_to_degree(0), data->map->player.p_angle);
 	cast_setup(data, &cast);
 	ray_casting(data, &cast, rays);
 	render_frame(data, rays);

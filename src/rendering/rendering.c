@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   rendering.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/15 15:11:48 by kschelvi          #+#    #+#             */
-/*   Updated: 2024/10/23 10:35:52 by splattje         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   rendering.c                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: splattje <splattje@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/10/15 15:11:48 by kschelvi      #+#    #+#                 */
+/*   Updated: 2024/10/24 15:29:38 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,82 +33,32 @@ static int	get_line_width(void)
  * @param location_rays location of the current rays in original rays array
  * @brief renders a single ray
  */
-static void	render_ray(t_data *data, t_ray *rays, int i, int location_rays)
+static void	render_ray(t_data *data, t_ray *rays, int i)
 {
 	int			x;
 	int			y;
-	int			dx;
-	int			dy;
+	int			line_start;
 	t_ipoint	src;
 
-	x = get_line_width() * (location_rays + i);
-	y = (SCREEN_HEIGHT - rays[i].height) / 2;
-	dx = 0;
-	while (dx < get_line_width())
+	x = get_line_width() * i;
+	line_start = (SCREEN_HEIGHT - rays[i].height) / 2;
+	y = 0;
+	while (y < SCREEN_HEIGHT)
 	{
-		dy = 0;
-		while (dy < rays[i].height)
+		if (y < line_start)
+			put_line_to_image(data->frame, create_ipoint(x, y), get_line_width(), data->map->c_color_hex);
+		else if (y > line_start + rays[i].height - 1)
+			put_line_to_image(data->frame, create_ipoint(x, y), get_line_width(), data->map->f_color_hex);
+		else
 		{
 			src.x = rays[i].wall_x * data->map->img[rays[i].index].w;
-			src.y = (int)dy * \
+			src.y = (int)(y - line_start) * \
 				(double)data->map->img[rays[i].index].h / rays[i].height;
-			src.x = src.x % data->map->img[rays[i].index].w;
-			src.y = src.y % data->map->img[rays[i].index].h;
-			put_pixel_img(data->frame, x + dx, y + dy, \
-				get_pixel_img(data->map->img[rays[i].index], src.x, src.y));
-			dy++;
-		}
-		dx++;
-	}
-}
-
-/**
- * @param data pointer to the main data struct (t_data)
- * @param rays pointer to an array of ray structs (t_ray)
- * @param n_rays length of rays array
- * @param location_rays location of the current rays in original rays array
- * @brief renders a single wall
- */
-static void	render_wall(t_data *data, t_ray *rays, \
-							int n_rays, int location_rays)
-{
-	int			i;
-
-	i = 0;
-	while (i < n_rays)
-	{
-		render_ray(data, rays, i, location_rays);
-		i++;
-	}
-}
-
-/**
- * @param data pointer to the main data struct (t_data)
- * @brief draws floor and ceiling onto frame
- */
-static void	draw_background(t_data *data)
-{
-	int		y;
-	int		x;
-	t_img	src;
-
-	y = 0;
-	src = data->frame;
-	while (y < src.h)
-	{
-		x = 0;
-		while (x < src.w)
-		{
-			if (y < src.h / 2)
-				put_pixel_img(src, x, y, data->map->c_color_hex);
-			else
-				put_pixel_img(src, x, y, data->map->f_color_hex);
-			x++;
+			put_line_to_image(data->frame, create_ipoint(x, y), get_line_width(), get_pixel_img(data->map->img[rays[i].index], src.x, src.y));
 		}
 		y++;
 	}
 }
-
 /**
  * @param data pointer to the main data struct (t_data)
  * @param rays pointer to an array of ray structs (t_ray)
@@ -118,21 +68,12 @@ static void	draw_background(t_data *data)
 t_error	render_frame(t_data *data, t_ray *rays)
 {
 	int			i;
-	int			j;
-	t_ipoint	wall;
 
-	draw_background(data);
 	i = 0;
 	while (i < get_num_rays())
 	{
-		j = 0;
-		wall.x = rays[i].map_x;
-		wall.y = rays[i].map_y;
-		while (i + j < get_num_rays() && \
-				rays[i + j].map_x == wall.x && rays[i + j].map_y == wall.y)
-			j++;
-		render_wall(data, &(rays[i]), j, i);
-		i += j;
+		render_ray(data, rays, i);
+		i++;
 	}
 	return (ERR_OK);
 }
