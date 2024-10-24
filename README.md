@@ -6,7 +6,7 @@ A 42 network project
 - [x] ray to screen pixel is not an integer
 - [x] image size is not perfect fit for screen size
 - [x] merge new rendering with main bransh
-- [ ] minimap on screen
+- [x] minimap on screen
 - [x] fix render performance
 - [ ] code cleanup and testing
 

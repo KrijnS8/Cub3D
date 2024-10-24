@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/15 15:11:48 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/10/24 15:37:31 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/10/24 16:15:11 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,59 @@ static void	render_ray(t_data *data, t_ray *rays, int i)
 
 /**
  * @param data pointer to the main data struct (t_data)
+ * @param block_size size of the wall blocks
+ * @param offset offset to sides of the screen
+ * @brief renders the player on the minimap
+ */
+void render_player_minimap(t_data *data, int block_size, int offset)
+{
+    int player_size;
+    int player_x;
+    int player_y;
+	int	i;
+
+	player_size = block_size * 3 / 4;
+	player_x = (data->map->player.p_x + 0.25) * block_size + offset;
+	player_y = (data->map->player.p_y + 0.25) * block_size + offset;
+	i = 0;
+	while (i < player_size)
+	{
+		put_line_to_image(data->frame, create_ipoint(player_x, player_y + i), player_size, 0xdc143c);
+		i++;
+	}
+}
+
+/**
+ * @param data pointer to the main data struct (t_data)
+ * @brief renders the minimap on the frame
+ */
+void render_minimap(t_data *data)
+{
+	int	x;
+	int	y;
+	const int	block_size = 15;
+	const int	offset = 40;
+
+	y = 0;
+	while (y < data->height)
+	{
+		x = 0;
+		while (x < data->width)
+		{
+			if (data->map->map[y][x] == '1')
+			{
+				for (int i = 0; i < block_size; i++)
+					put_line_to_image(data->frame, create_ipoint(x * block_size + offset, y * block_size + i + offset), block_size, 0xccffff);
+			}
+			x++;
+		}
+		y++;
+	}
+	render_player_minimap(data, block_size, offset);
+}
+
+/**
+ * @param data pointer to the main data struct (t_data)
  * @param rays pointer to an array of ray structs (t_ray)
  * @brief renders a single frame using the information from the rays array
  * @return an error code, rendered frame is stored in data struct
@@ -78,5 +131,6 @@ t_error	render_frame(t_data *data, t_ray *rays)
 		render_ray(data, rays, i);
 		i++;
 	}
+	render_minimap(data);
 	return (ERR_OK);
 }
