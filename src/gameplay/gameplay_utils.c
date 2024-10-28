@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:32:14 by splattje          #+#    #+#             */
-/*   Updated: 2024/10/28 15:28:07 by splattje         ###   ########.fr       */
+/*   Updated: 2024/10/28 16:18:14 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,14 @@ void	open_close_door(t_player player, t_door *door, t_dpoint dir)
 		door->state = D_OPEN;
 	else if (door->state == D_OPEN)
 	{
-		range.y = -0.1;
-		while (range.y < 0.1)
+		range.y = -0.2;
+		while (range.y < 0.3)
 		{
-			range.x = -0.1;
-			while (range.x < 0.1)
+			range.x = -0.2;
+			while (range.x < 0.3)
 			{
 				if ((int)(player.p_y + dir.y + range.y) != door->y
-					&& (int)(player.p_x + dir.x + range.x) != door->x)
+					|| (int)(player.p_x + dir.x + range.x) != door->x)
 					door->state = D_CLOSE;
 				else
 				{
