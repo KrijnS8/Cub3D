@@ -8,7 +8,9 @@ A 42 network project
 - [x] merge new rendering with main bransh
 - [x] minimap on screen
 - [x] fix render performance
-- [ ] code cleanup and testing
+- [x] code cleanup and testing
+- [ ] create test maps
+- [ ] better errors
 
 notes
 bonus is animated sprite so I will add a ghost that goes up and down and leave the doors as is 

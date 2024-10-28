@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   gameplay.h                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/24 15:40:27 by splattje          #+#    #+#             */
-/*   Updated: 2024/10/28 15:57:50 by splattje         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   gameplay.h                                         :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: splattje <splattje@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/09/24 15:40:27 by splattje      #+#    #+#                 */
+/*   Updated: 2024/10/28 16:41:55 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 
 # define PLAYER_SPEED 0.075
 # define CAMERA_SPEED 0.75
+
+# define WALL_COLLISION_OFFSET 0.1
 
 typedef struct s_data	t_data;
 typedef struct s_dpoint	t_dpoint;

@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/09/24 15:27:09 by splattje      #+#    #+#                 */
-/*   Updated: 2024/10/28 16:31:32 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/10/28 16:41:53 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,13 @@ void	do_movement(t_data *data)
 	dy = 0;
 	do_dirctional_calculations(data, &dx, &dy);
 	if (dx > 0)
-		offset.x = 0.1;
+		offset.x = WALL_COLLISION_OFFSET;
 	else
-		offset.x = -0.1;
+		offset.x = -WALL_COLLISION_OFFSET;
 	if (dy > 0)
-		offset.y = 0.1;
+		offset.y = WALL_COLLISION_OFFSET;
 	else
-		offset.y = -0.1;
+		offset.y = -WALL_COLLISION_OFFSET;
 	if (data->map->map[(int)(data->map->player.p_y + dy + offset.y + 0.5)]
 		[(int)(data->map->player.p_x + dx + offset.x + 0.5)] != '1')
 	{
