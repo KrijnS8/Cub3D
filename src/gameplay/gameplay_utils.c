@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   gameplay_utils.c                                   :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: splattje <splattje@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/10/22 15:32:14 by splattje      #+#    #+#                 */
-/*   Updated: 2024/10/24 16:18:35 by kschelvi      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   gameplay_utils.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/22 15:32:14 by splattje          #+#    #+#             */
+/*   Updated: 2024/10/28 15:28:07 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 #include "gameplay.h"
+#include "rendering.h"
 #include <math.h>
 #ifndef M_PI
 # define M_PI 3.14159265358979323846
@@ -52,19 +53,31 @@ void	move(t_door *doors, t_data *data, double dx, double dy)
 	}
 }
 
-void	open_close_door(t_data *data, t_door *door)
+void	open_close_door(t_player player, t_door *door, t_dpoint dir)
 {
-	(void)data;
+	t_dpoint	range;
+
 	if (door->state == D_CLOSE)
-	{
-		door->state = D_CHANGE;
-		// render open and close door
 		door->state = D_OPEN;
-	}
 	else if (door->state == D_OPEN)
 	{
-		door->state = D_CHANGE;
-		// render open and close door;
-		door->state = D_CLOSE;
+		range.y = -0.1;
+		while (range.y < 0.1)
+		{
+			range.x = -0.1;
+			while (range.x < 0.1)
+			{
+				if ((int)(player.p_y + dir.y + range.y) != door->y
+					&& (int)(player.p_x + dir.x + range.x) != door->x)
+					door->state = D_CLOSE;
+				else
+				{
+					door->state = D_OPEN;
+					return ;
+				}
+				range.x += 0.1;
+			}
+			range.y += 0.1;
+		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 14:08:51 by splattje          #+#    #+#             */
-/*   Updated: 2024/10/23 09:12:56 by splattje         ###   ########.fr       */
+/*   Updated: 2024/10/28 15:38:09 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,19 +103,7 @@ char	**set_map_values(t_map_list *map, int index)
 		if (index < 4)
 			result[index] = set_map_info(map, 3);
 		else if (index == 4)
-		{
-			if (ft_strncmp(map->line, "DOOR", 4) == 0)
-			{
-				result[index] = set_map_info(map, 5);
-				map = map->next->next;
-				result[++index] = set_map_info(map, 2);
-			}
-			else
-			{
-				map = map->next;
-				result[index] = set_map_info(map, 2);
-			}
-		}
+			index = set_map_object(&map, &result, 4);
 		else
 			result[index] = set_map_info(map, 2);
 		if (result[index] == NULL)

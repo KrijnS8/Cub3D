@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   key_hooks.c                                        :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: splattje <splattje@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/09/24 15:27:09 by splattje      #+#    #+#                 */
-/*   Updated: 2024/10/28 14:21:49 by kschelvi      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   key_hooks.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/24 15:27:09 by splattje          #+#    #+#             */
+/*   Updated: 2024/10/28 15:44:57 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,30 +15,30 @@
 #include "rendering.h"
 #include <math.h>
 
-void	door_status_change(t_data *data, double start_x, double start_y,
-	t_door *door)
+void	door_status_change(t_data *data, t_door *door)
 {
-	double	dx;
-	double	dy;
+	t_dpoint	dir;
+	t_dpoint	start;
 
-	dx = cos(degree_to_radian(data->map->player.p_angle))
+	dir.x = cos(degree_to_radian(data->map->player.p_angle))
 		* -data->map->player.move_fb * 0.25;
-	dy = sin(degree_to_radian(data->map->player.p_angle))
+	dir.y = sin(degree_to_radian(data->map->player.p_angle))
 		* -data->map->player.move_fb * 0.25;
 	while (door != NULL)
 	{
-		while (start_y < 1.6)
+		start.y = -1.5;
+		while (start.y < 1.6)
 		{
-			while (start_x < 1.6)
+			start.x = -1.5;
+			while (start.x < 1.6)
 			{
-				if ((int)(data->map->player.p_y
-					+ dy + start_y) == door->y
+				if ((int)(data->map->player.p_y + dir.y + start.y) == door->y
 					&& (int)(data->map->player.p_x
-					+ dx + start_x) == door->x)
-					return (open_close_door(data, door));
-				start_x += 0.1;
+					+ dir.x + start.x) == door->x)
+					return (open_close_door(data->map->player, door, dir));
+				start.x += 0.1;
 			}
-			start_y += 0.1;
+			start.y += 0.1;
 		}
 		door = door->next;
 	}
@@ -85,7 +85,7 @@ int	handle_keypress(int keysym, t_data *data)
 			data->map->player.looking = CAMERA_SPEED;
 	}
 	else if (keysym == XK_e)
-		door_status_change(data, -0.5, -0.5, data->map->doors);
+		door_status_change(data, data->map->doors);
 	else
 	{
 		if (keysym == XK_w)

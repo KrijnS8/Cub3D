@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   cube.h                                             :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: splattje <splattje@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/05/14 10:11:14 by splattje      #+#    #+#                 */
-/*   Updated: 2024/10/28 14:26:03 by kschelvi      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   cube.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/14 10:11:14 by splattje          #+#    #+#             */
+/*   Updated: 2024/10/28 15:44:37 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,11 +132,11 @@ t_door		*door_exists(t_data *data, int x, int y);
 void		do_movement(t_data *data);
 void		do_dirctional_calculations(t_data *data, double *dx, double *dy);
 void		move(t_door *doors, t_data *data, double dx, double dy);
-void		open_close_door(t_data *data, t_door *door);
 bool		check_door_file(t_map **map);
 bool		check_door_floor(t_map **map, int x, int y, t_data *data);
 bool		floor_fill(char **map, int y, int x, int height);
 bool		check_postion(char **map, int y, int x);
+int			set_map_object(t_map_list **map, char ***result, int index);
 
 t_degree	char_to_degree(char c);
 

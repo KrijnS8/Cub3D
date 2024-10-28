@@ -22,6 +22,7 @@ SRC = main.c \
 		freeing.c \
 		parsing.c \
 		parsing_utils.c \
+		parsing_utils2.c \
 		map_checking.c \
 		map_checking_utils.c \
 		map_checking_utils2.c \
