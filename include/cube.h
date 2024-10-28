@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cube.h                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/14 10:11:14 by splattje          #+#    #+#             */
-/*   Updated: 2024/10/23 10:41:44 by splattje         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   cube.h                                             :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: splattje <splattje@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/05/14 10:11:14 by splattje      #+#    #+#                 */
+/*   Updated: 2024/10/28 14:26:03 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ typedef struct s_player
 	t_degree	p_angle;
 	int			move_fb;
 	int			move_lr;
-	int			looking;
+	double		looking;
 }	t_player;
 
 typedef struct s_door

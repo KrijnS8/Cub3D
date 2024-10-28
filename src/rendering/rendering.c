@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/15 15:11:48 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/10/24 16:46:04 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/10/28 15:34:18 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	render_minimap(t_data *data)
 	int			x;
 	int			y;
 	int			i;
-	const int	block_size = 15;
+	const int	block_size = SCREEN_WIDTH / 5 / data->width;
 	const int	offset = 40;
 
 	y = 0;

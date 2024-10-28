@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   key_hooks.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/24 15:27:09 by splattje          #+#    #+#             */
-/*   Updated: 2024/10/22 17:18:30 by splattje         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   key_hooks.c                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: splattje <splattje@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/09/24 15:27:09 by splattje      #+#    #+#                 */
+/*   Updated: 2024/10/28 14:21:49 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,9 @@ int	handle_keypress(int keysym, t_data *data)
 	else if (keysym == XK_Left || keysym == XK_Right)
 	{
 		if (keysym == XK_Left)
-			data->map->player.looking = -1;
+			data->map->player.looking = -CAMERA_SPEED;
 		if (keysym == XK_Right)
-			data->map->player.looking = 1;
+			data->map->player.looking = CAMERA_SPEED;
 	}
 	else if (keysym == XK_e)
 		door_status_change(data, -0.5, -0.5, data->map->doors);

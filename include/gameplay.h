@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/09/24 15:40:27 by splattje      #+#    #+#                 */
-/*   Updated: 2024/10/24 16:23:20 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/10/28 14:25:50 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stddef.h>
 
 # define PLAYER_SPEED 0.075
+# define CAMERA_SPEED 0.75
 
 typedef struct s_data	t_data;
 

@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/09/24 13:31:27 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/10/24 15:06:37 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/10/28 15:23:03 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ t_ipoint		create_ipoint(double x, double y);
 void			put_img_to_img(t_img dst, t_img src, int x, int y);
 void			put_pixel_img(t_img img, int x, int y, int color);
 unsigned int	get_pixel_img(t_img img, int x, int y);
-void 			put_line_to_image(t_img img, t_ipoint pos, int length, int color);
+void			put_line_to_image(t_img img, t_ipoint pos, \
+									int length, int color);
 void			clear_img(t_img src);
 
 #endif
