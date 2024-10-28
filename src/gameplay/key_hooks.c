@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   key_hooks.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/24 15:27:09 by splattje          #+#    #+#             */
-/*   Updated: 2024/10/28 15:57:30 by splattje         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   key_hooks.c                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: splattje <splattje@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/09/24 15:27:09 by splattje      #+#    #+#                 */
+/*   Updated: 2024/10/28 16:31:32 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,24 @@ void	door_status_change(t_data *data, t_door *door)
  */
 void	do_movement(t_data *data)
 {
-	double	dx;
-	double	dy;
-	t_door	*doors;
+	double		dx;
+	double		dy;
+	t_door		*doors;
+	t_dpoint	offset;
 
 	dx = 0;
 	dy = 0;
 	do_dirctional_calculations(data, &dx, &dy);
-	if (data->map->map[(int)(data->map->player.p_y + dy + 0.5)]
-		[(int)(data->map->player.p_x + dx + 0.5)] != '1')
+	if (dx > 0)
+		offset.x = 0.1;
+	else
+		offset.x = -0.1;
+	if (dy > 0)
+		offset.y = 0.1;
+	else
+		offset.y = -0.1;
+	if (data->map->map[(int)(data->map->player.p_y + dy + offset.y + 0.5)]
+		[(int)(data->map->player.p_x + dx + offset.x + 0.5)] != '1')
 	{
 		doors = door_exists(data, (int)(data->map->player.p_x + dx + 0.5),
 				(int)(data->map->player.p_y + dy + 0.5));
