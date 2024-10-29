@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 14:08:51 by splattje          #+#    #+#             */
-/*   Updated: 2024/10/29 09:34:57 by splattje         ###   ########.fr       */
+/*   Updated: 2024/10/29 09:51:58 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,9 @@ char	**set_map_values(t_map_list *map, int index)
 		return (perror("Error\nMalloc failed\n"), NULL);
 	while (++index < max)
 	{
+		printf("index is %d\n", index);
+		if (index == -1)
+			return (free_2d_array(result), NULL);
 		if (index < 4)
 		{
 			if (!set_wall_textures(&map, &result, index))
@@ -107,8 +110,7 @@ char	**set_map_values(t_map_list *map, int index)
 		else
 			result[index] = set_map_info(map, 2);
 		if (result[index] == NULL)
-			return (perror("Error\nMalloc failed\n"),
-				free_2d_array(result), NULL);
+			return (free_2d_array(result), NULL);
 		map = map->next;
 	}
 	return (result);
