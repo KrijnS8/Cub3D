@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 14:08:51 by splattje          #+#    #+#             */
-/*   Updated: 2024/10/28 15:38:09 by splattje         ###   ########.fr       */
+/*   Updated: 2024/10/29 09:34:57 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,17 +91,17 @@ char	**set_map_values(t_map_list *map, int index)
 	char		**result;
 	int			max;
 
-	if (ft_strncmp(map->next->next->next->next->line, "DOOR", 4) == 0)
-		max = 7;
-	else
-		max = 6;
+	max = set_max(map);
 	result = ft_calloc(sizeof(char *), max);
 	if (result == NULL)
 		return (perror("Error\nMalloc failed\n"), NULL);
 	while (++index < max)
 	{
 		if (index < 4)
-			result[index] = set_map_info(map, 3);
+		{
+			if (!set_wall_textures(&map, &result, index))
+				return (free_2d_array(result), NULL);
+		}
 		else if (index == 4)
 			index = set_map_object(&map, &result, 4);
 		else

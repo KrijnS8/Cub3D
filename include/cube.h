@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 10:11:14 by splattje          #+#    #+#             */
-/*   Updated: 2024/10/28 15:57:57 by splattje         ###   ########.fr       */
+/*   Updated: 2024/10/29 09:34:31 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,8 @@ bool		check_door_floor(t_map **map, int x, int y, t_data *data);
 bool		floor_fill(char **map, int y, int x, int height);
 bool		check_postion(char **map, int y, int x);
 int			set_map_object(t_map_list **map, char ***result, int index);
+bool		set_wall_textures(t_map_list **map, char ***result, int index);
+int			set_max(t_map_list *map);
 
 t_degree	char_to_degree(char c);
 
