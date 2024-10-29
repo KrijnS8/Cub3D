@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 14:08:51 by splattje          #+#    #+#             */
-/*   Updated: 2024/10/29 09:51:58 by splattje         ###   ########.fr       */
+/*   Updated: 2024/10/29 09:53:52 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ char	**set_map_values(t_map_list *map, int index)
 		return (perror("Error\nMalloc failed\n"), NULL);
 	while (++index < max)
 	{
-		printf("index is %d\n", index);
 		if (index == -1)
 			return (free_2d_array(result), NULL);
 		if (index < 4)
