@@ -6,7 +6,7 @@
 /*   By: kschelvi <kschelvi@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/09/24 13:28:42 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/10/24 16:26:29 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/10/31 15:26:52 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ int	repl(t_data *data)
 		angle_change = 0;
 	data->map->player.p_angle = degree_add(
 			double_to_degree(angle_change), data->map->player.p_angle);
-	build_frame(data);
 	data->map->player.p_angle = \
 		degree_add(double_to_degree(data->map->player.looking), \
 									data->map->player.p_angle);
+	build_frame(data);
 	return (ERR_OK);
 }

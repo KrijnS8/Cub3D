@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/09/24 13:43:45 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/10/24 12:32:40 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/10/31 15:25:06 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,27 @@ void	cast_setup(t_data *data, t_cast_config *cast)
 
 /**
  * @param data pointer to the main data struct (t_data)
+ * @brief checks if the player has moved since last frame
+ */
+static bool	player_moved(t_data *data)
+{
+	static t_player	last_player;
+	t_player		current_player;
+
+	current_player = data->map->player;
+	if (current_player.p_angle.value != last_player.p_angle.value ||
+			current_player.p_x != last_player.p_x ||
+			current_player.p_y != last_player.p_y)
+	{
+		last_player = current_player;
+		return (true);
+	}
+	last_player = current_player;
+	return (false);
+}
+
+/**
+ * @param data pointer to the main data struct (t_data)
  * @brief builds a frame using the current game status
  * @return an error struct (t_error)
  */
@@ -46,6 +67,8 @@ int	build_frame(t_data *data)
 	t_ray			rays[(int)(FIELD_OF_VIEW / RAY_ANGLE_DELTA)];
 	t_cast_config	cast;
 
+	if (!player_moved(data))
+		return (ERR_OK);
 	cast_setup(data, &cast);
 	ray_casting(data, &cast, rays);
 	render_frame(data, rays);
