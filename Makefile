@@ -20,13 +20,13 @@ vpath %.c $(SRC_DIR)
 SRC = main.c \
 		initializing.c \
 		freeing.c \
-		parsing.c \
-		parsing_utils.c \
-		parsing_utils2.c \
-		map_checking.c \
-		map_checking_utils.c \
-		map_checking_utils2.c \
-		set_wall_images.c \
+		parser/parsing.c \
+		parser/parsing_utils.c \
+		parser/parsing_utils2.c \
+		parser/map_checking.c \
+		parser/map_checking_utils.c \
+		parser/map_checking_utils2.c \
+		parser/set_wall_images.c \
 		repl.c \
 		my_error.c \
 		char_to_degree.c \
