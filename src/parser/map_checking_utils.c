@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:42:23 by splattje          #+#    #+#             */
-/*   Updated: 2024/11/01 09:48:52 by splattje         ###   ########.fr       */
+/*   Updated: 2024/11/01 16:59:55 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static t_door	*set_door(int x, int y)
 
 static bool	check_door_valid(t_map *map, t_data *data, int x, int y)
 {
-	if (y - 1 < 0 || y + 1 > data->height || x - 1 < 0
+	if (y - 1 < 0 || y + 1 >= data->height || x - 1 < 0
 		|| x + 1 > (int)ft_strlen(map->map[y]))
 		return (print_error(ERR_MAP_BOUND), false);
 	if (map->map[y + 1][x] == '1' && map->map[y - 1][x] == '1'
