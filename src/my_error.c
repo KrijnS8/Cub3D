@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 09:01:04 by splattje          #+#    #+#             */
-/*   Updated: 2024/11/01 10:19:02 by splattje         ###   ########.fr       */
+/*   Updated: 2024/11/01 10:32:54 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 static void	map_order_print(void)
 {
-	ft_putstr_fd("The map needs to have at least the following info in this ", 2);
-	ft_putstr_fd("order\n", 2);
+	ft_putstr_fd("The map needs to have at least the following info in ", 2);
+	ft_putstr_fd("this order\n", 2);
 	ft_putstr_fd("NO image/FILENAME.xpm\n", 2);
 	ft_putstr_fd("SO image/FILENAME.xpm\n", 2);
 	ft_putstr_fd("WE image/FILENAME.xpm\n", 2);
@@ -48,8 +48,8 @@ void	print_error(t_error error)
 		ft_putstr_fd("Error\nMLX returned NULL\n", 2);
 	else if (error == ERR_DOOR)
 	{
-		ft_putstr_fd("Error\nDoor needs two sides to be a wall and 2 sides ", 2);
-		ft_putstr_fd("to be open space", 2);
+		ft_putstr_fd("Error\nDoor needs two sides to be a wall and 2 ", 2);
+		ft_putstr_fd("sides to be open space", 2);
 	}
 	else if (error == ERR_MAP_BOUND)
 		ft_putstr_fd("Error\nIndex for map is out of bounds\n", 2);

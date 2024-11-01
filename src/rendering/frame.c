@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   frame.c                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: splattje <splattje@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/09/24 13:43:45 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/10/31 15:25:06 by kschelvi      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   frame.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/24 13:43:45 by kschelvi          #+#    #+#             */
+/*   Updated: 2024/11/01 10:33:58 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ static bool	player_moved(t_data *data)
 	t_player		current_player;
 
 	current_player = data->map->player;
-	if (current_player.p_angle.value != last_player.p_angle.value ||
-			current_player.p_x != last_player.p_x ||
-			current_player.p_y != last_player.p_y)
+	if (current_player.p_angle.value != last_player.p_angle.value
+		|| current_player.p_x != last_player.p_x
+		|| current_player.p_y != last_player.p_y)
 	{
 		last_player = current_player;
 		return (true);
