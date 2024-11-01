@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 10:11:14 by splattje          #+#    #+#             */
-/*   Updated: 2024/10/29 09:34:31 by splattje         ###   ########.fr       */
+/*   Updated: 2024/11/01 10:16:04 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,13 @@ typedef struct s_img
 	int		endian;
 	int		line_len;
 }	t_img;
+
+typedef struct s_rgb
+{
+	int	r;
+	int	g;
+	int	b;
+}	t_rgb;
 
 typedef struct s_map_list
 {

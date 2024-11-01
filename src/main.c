@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 10:10:37 by splattje          #+#    #+#             */
-/*   Updated: 2024/10/23 10:42:41 by splattje         ###   ########.fr       */
+/*   Updated: 2024/11/01 09:50:19 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int argc, char **argv)
 	if (data->mlx == NULL)
 		return (perror("Error\nMLX failed\n"), free_data(data), 1);
 	if (!parse_input(argv[1], &data))
-		return (ft_putendl_fd("parsing error", 2), free_data(data), 1);
+		return (free_data(data), 1);
 	data->win = mlx_new_window(data->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "Cube");
 	if (data->win == NULL)
 		return (perror("Error\nMXL Window failed\n"), free_data(data), 1);

@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   set_wall_images.c                                  :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: splattje <splattje@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/09/24 13:57:33 by splattje      #+#    #+#                 */
-/*   Updated: 2024/10/28 14:34:57 by kschelvi      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   set_wall_images.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/24 13:57:33 by splattje          #+#    #+#             */
+/*   Updated: 2024/11/01 09:31:18 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 #include "rendering.h"
+#include "my_error.h"
 
 /**
  * @var img the new empty image
@@ -27,7 +28,7 @@ static t_img	new_empty_image(t_data *data, int width, int height)
 	img.h = height;
 	img.img_ptr = mlx_new_image(data->mlx, img.w, img.h);
 	if (img.img_ptr == NULL)
-		return (img);
+		return (print_error(ERR_MLX), img);
 	img.addr = mlx_get_data_addr(img.img_ptr, (&img.bpp),
 			&(img.line_len), &(img.endian));
 	return (img);
@@ -47,7 +48,7 @@ static t_img	new_image(void *mlx_ptr, char *image_location)
 	img.img_ptr = mlx_xpm_file_to_image(mlx_ptr, image_location, \
 										&img.w, &img.h);
 	if (img.img_ptr == NULL)
-		return (img);
+		return (print_error(ERR_MLX), img);
 	img.addr = mlx_get_data_addr(img.img_ptr, &(img.bpp), \
 									&(img.line_len), &(img.endian));
 	return (img);

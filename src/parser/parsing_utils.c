@@ -6,11 +6,12 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 10:18:04 by splattje          #+#    #+#             */
-/*   Updated: 2024/10/15 12:30:04 by splattje         ###   ########.fr       */
+/*   Updated: 2024/11/01 09:35:08 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
+#include "my_error.h"
 
 /**
  * @param data a double pointer to the main data struct (t_data)
@@ -51,7 +52,7 @@ t_map_list	*new_map_list(char *line)
 		return (NULL);
 	map_list = (t_map_list *)malloc(sizeof(t_map_list));
 	if (map_list == NULL)
-		return (NULL);
+		return (print_error(ERR_MALLOC), NULL);
 	map_list->line = line;
 	map_list->line_size = ft_strlen(map_list->line);
 	map_list->next = NULL;
@@ -113,7 +114,7 @@ char	*set_map_info(t_map_list *head, int skip)
 	position = head;
 	result = ft_strdup(position->line + skip);
 	if (result == NULL)
-		return (perror("Error\nMalloc failed\n"), NULL);
+		return (print_error(ERR_MALLOC), NULL);
 	tmp = position->next;
 	position = tmp;
 	head = position;

@@ -6,11 +6,12 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 09:51:23 by splattje          #+#    #+#             */
-/*   Updated: 2024/10/23 10:42:48 by splattje         ###   ########.fr       */
+/*   Updated: 2024/11/01 10:18:33 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
+#include "my_error.h"
 
 /**
  * @param map a 2d char array of the map
@@ -27,7 +28,7 @@ bool	floor_fill(char **map, int y, int x, int height)
 	{
 		if (y - 1 < 0 || y + 1 > height || x - 1 < 0
 			|| x + 1 > (int)ft_strlen(map[y]))
-			return (false);
+			return (print_error(ERR_FLOOR), false);
 		if (!check_postion(map, y - 1, x))
 			return (false);
 		if (!check_postion(map, y + 1, x))
@@ -71,7 +72,7 @@ static bool	player_check(char **map_array, t_map **map)
 				|| map_array[line][index] == 'W')
 			{
 				if ((*map)->player.p_face != 0)
-					return (false);
+					return (print_error(ERR_PLAYER), false);
 				(*map)->player.p_face = map_array[line][index];
 				(*map)->player.p_angle = char_to_degree((*map)->player.p_face);
 				(*map)->player.p_x = index;
@@ -81,7 +82,7 @@ static bool	player_check(char **map_array, t_map **map)
 	}
 	if ((*map)->player.p_face != 0)
 		return (true);
-	return (false);
+	return (print_error(ERR_PLAYER), false);
 }
 
 /**
@@ -95,19 +96,19 @@ static bool	check_wall_file(t_map **map)
 
 	fd = open((*map)->n_image_location, O_RDONLY);
 	if (fd == -1)
-		return (perror("Error\nfailed to open file\n"), (false));
+		return (print_error(ERR_OPEN), (false));
 	close(fd);
 	fd = open((*map)->s_image_location, O_RDONLY);
 	if (fd == -1)
-		return (perror("Error\nfailed to open file\n"), (false));
+		return (print_error(ERR_OPEN), (false));
 	close(fd);
 	fd = open((*map)->w_image_location, O_RDONLY);
 	if (fd == -1)
-		return (perror("Error\nfailed to open file\n"), (false));
+		return (print_error(ERR_OPEN), (false));
 	close(fd);
 	fd = open((*map)->e_image_location, O_RDONLY);
 	if (fd == -1)
-		return (perror("Error\nfailed to open file\n"), (false));
+		return (print_error(ERR_OPEN), (false));
 	close(fd);
 	if ((*map)->door_file_location != NULL)
 	{
@@ -124,30 +125,30 @@ static bool	check_wall_file(t_map **map)
  */
 static int	floor_ceiling_rgb(char *rgb_string)
 {
-	int	r;
-	int	g;
-	int	b;
-	int	index;
+	t_rgb	rgb;
+	int		index;
 
 	index = -1;
-	r = 0;
+	rgb.r = 0;
 	if (ft_strlen(rgb_string) < 5 || ft_strlen(rgb_string) > 11)
-		return (-1);
+		return (print_error(ERR_RGB), -1);
 	while (ft_isdigit(rgb_string[++index]))
-		r = r * 10 + (rgb_string[index] - '0');
-	if (r < 0 || r > 255)
-		return (-1);
-	g = 0;
+		rgb.r = rgb.r * 10 + (rgb_string[index] - '0');
+	if (rgb.r < 0 || rgb.r > 255)
+		return (print_error(ERR_RGB_BOUND), -1);
+	rgb.g = 0;
 	while (ft_isdigit(rgb_string[++index]))
-		g = g * 10 + (rgb_string[index] - '0');
-	if (g < 0 || g > 255)
-		return (-1);
-	b = 0;
+		rgb.g = rgb.g * 10 + (rgb_string[index] - '0');
+	if (rgb.g < 0 || rgb.g > 255)
+		return (print_error(ERR_RGB_BOUND), -1);
+	rgb.b = 0;
 	while (ft_isdigit(rgb_string[++index]))
-		b = b * 10 + (rgb_string[index] - '0');
-	if (b < 0 || b > 255 || rgb_string[index] != '\0')
-		return (-1);
-	return ((r << 16) | (g << 8) | b);
+		rgb.b = rgb.b * 10 + (rgb_string[index] - '0');
+	if (rgb.b < 0 || rgb.b > 255)
+		return (print_error(ERR_RGB_BOUND), -1);
+	if (rgb_string[index] != '\0')
+		return (print_error(ERR_RGB), -1);
+	return ((rgb.r << 16) | (rgb.g << 8) | rgb.b);
 }
 
 /**

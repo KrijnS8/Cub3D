@@ -6,11 +6,12 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 14:08:51 by splattje          #+#    #+#             */
-/*   Updated: 2024/10/29 09:53:52 by splattje         ###   ########.fr       */
+/*   Updated: 2024/11/01 10:23:41 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
+#include "my_error.h"
 
 /**
  * @param fd the file descripter of the file being read
@@ -36,9 +37,7 @@ bool	read_map(int fd, t_data **data)
 		free(line);
 		node = new_map_list(trimmed);
 		if (node == NULL)
-			return (perror("Error\nMalloc failed"),
-				free_map((*data)->map),
-				false);
+			return (free_map((*data)->map), false);
 		map_list_add_back(data, node);
 	}
 	if (line != NULL)
@@ -63,13 +62,13 @@ char	**map_to_array(t_map_list *map, t_data **data)
 		map = map->next;
 	map_array = (char **)ft_calloc(sizeof(char *), (*data)->height + 1);
 	if (map_array == NULL)
-		return (perror("Error\nMalloc failed"), NULL);
+		return (print_error(ERR_MALLOC), NULL);
 	index = -1;
 	while (map != NULL)
 	{
 		map_array[++index] = ft_calloc(sizeof(char), ((*data)->width + 1));
 		if (map_array[index] == NULL)
-			return (perror("Error\nMalloc failed"), NULL);
+			return (print_error(ERR_MALLOC), NULL);
 		ft_strlcpy(map_array[index], map->line, ft_strlen(map->line) + 1);
 		length = -1;
 		while (((int)ft_strlen(map->line) + ++length) < (*data)->width)
@@ -94,7 +93,7 @@ char	**set_map_values(t_map_list *map, int index)
 	max = set_max(map);
 	result = ft_calloc(sizeof(char *), max);
 	if (result == NULL)
-		return (perror("Error\nMalloc failed\n"), NULL);
+		return (print_error(ERR_MALLOC), NULL);
 	while (++index < max)
 	{
 		if (index == -1)
@@ -162,14 +161,14 @@ bool	parse_input(char *input, t_data **data)
 
 	lenght = ft_strlen(input);
 	if (ft_strncmp(input + (lenght - 4), ".cub", 4) != 0)
-		return (ft_putendl_fd("Error\nWrong extention", 2), false);
+		return (print_error(ERR_EXTENTION), false);
 	map_location = ft_strjoin("maps/", input);
 	if (map_location == NULL)
-		return (perror("Error\nMalloc fail1"), false);
+		return (print_error(ERR_MALLOC), false);
 	fd = open(map_location, O_RDWR);
 	free(map_location);
 	if (fd == -1)
-		return (perror("Error\nFailed to open file"), false);
+		return (print_error(ERR_OPEN), false);
 	if (!read_map(fd, &(*data)))
 	{
 		close(fd);
