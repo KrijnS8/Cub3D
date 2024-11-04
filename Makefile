@@ -1,7 +1,7 @@
 NAME = cub3D
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -MMD -MP -g -I./include
+CFLAGS = -Wall -Werror -Wextra -MMD -MP -O3 -g -I./include
 
 MINILIBX_DIR = mlx
 MINILIBX = $(MINILIBX_DIR)/libmlx.a
@@ -34,6 +34,7 @@ SRC = main.c \
 		degree/to_degree.c \
 		rendering/frame.c \
 		rendering/img.c \
+		rendering/minimap.c \
 		rendering/ray_casting.c \
 		rendering/rendering.c \
 		rendering/setup_ray.c \
