@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/09/24 13:35:00 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/10/24 14:41:39 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/11/04 11:52:50 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,9 @@ static void	calculate_render_data(t_player *player, t_ray *ray)
 	{
 		ray->distance = (ray->side_dist.x - ray->delta_dist.x);
 		if (ray->dir.x < 0 && ray->index != DOOR)
-			ray->index = W_WALL;
-		else if (ray->index != DOOR)
 			ray->index = E_WALL;
+		else if (ray->index != DOOR)
+			ray->index = W_WALL;
 		wall_distance = player->p_y + 0.5 + (ray->distance * ray->dir.y);
 		ray->wall_x = fmod(wall_distance, 1);
 	}
