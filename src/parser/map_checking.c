@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 09:51:23 by splattje          #+#    #+#             */
-/*   Updated: 2024/11/01 10:18:33 by splattje         ###   ########.fr       */
+/*   Updated: 2024/11/01 16:58:56 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ bool	floor_fill(char **map, int y, int x, int height)
 {
 	if (map[y][x] == '0')
 	{
-		if (y - 1 < 0 || y + 1 > height || x - 1 < 0
+		if (y - 1 < 0 || y + 1 >= height || x - 1 < 0
 			|| x + 1 > (int)ft_strlen(map[y]))
 			return (print_error(ERR_FLOOR), false);
 		if (!check_postion(map, y - 1, x))
