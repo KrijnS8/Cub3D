@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 14:08:51 by splattje          #+#    #+#             */
-/*   Updated: 2024/11/01 10:23:41 by splattje         ###   ########.fr       */
+/*   Updated: 2024/11/04 11:44:13 by splattje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,16 +157,11 @@ bool	parse_input(char *input, t_data **data)
 {
 	size_t	lenght;
 	int		fd;
-	char	*map_location;
 
 	lenght = ft_strlen(input);
 	if (ft_strncmp(input + (lenght - 4), ".cub", 4) != 0)
 		return (print_error(ERR_EXTENTION), false);
-	map_location = ft_strjoin("maps/", input);
-	if (map_location == NULL)
-		return (print_error(ERR_MALLOC), false);
-	fd = open(map_location, O_RDWR);
-	free(map_location);
+	fd = open(input, O_RDWR);
 	if (fd == -1)
 		return (print_error(ERR_OPEN), false);
 	if (!read_map(fd, &(*data)))
