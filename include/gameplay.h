@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/09/24 15:40:27 by splattje      #+#    #+#                 */
-/*   Updated: 2024/10/28 16:41:55 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/11/04 11:39:39 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include <stddef.h>
 
-# define PLAYER_SPEED 0.075
-# define CAMERA_SPEED 0.75
+# define PLAYER_SPEED 0.04
+# define CAMERA_SPEED 0.7
 
 # define WALL_COLLISION_OFFSET 0.1
 

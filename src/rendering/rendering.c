@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/15 15:11:48 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/10/28 15:34:18 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/11/04 11:34:11 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,64 +60,6 @@ static void	render_ray(t_data *data, t_ray *rays, int i)
 		}
 		pos.y++;
 	}
-}
-
-/**
- * @param data pointer to the main data struct (t_data)
- * @param block_size size of the wall blocks
- * @param offset offset to sides of the screen
- * @brief renders the player on the minimap
- */
-void	render_player_minimap(t_data *data, int block_size, int offset)
-{
-	int	player_size;
-	int	player_x;
-	int	player_y;
-	int	i;
-
-	player_size = block_size * 3 / 4;
-	player_x = (data->map->player.p_x + 0.25) * block_size + offset;
-	player_y = (data->map->player.p_y + 0.25) * block_size + offset;
-	i = 0;
-	while (i < player_size)
-	{
-		put_line_to_image(data->frame, create_ipoint(player_x, player_y + i), \
-							player_size, 0xdc143c);
-		i++;
-	}
-}
-
-/**
- * @param data pointer to the main data struct (t_data)
- * @brief renders the minimap on the frame
- */
-void	render_minimap(t_data *data)
-{
-	int			x;
-	int			y;
-	int			i;
-	const int	block_size = SCREEN_WIDTH / 5 / data->width;
-	const int	offset = 40;
-
-	y = 0;
-	while (y < data->height)
-	{
-		x = 0;
-		while (x < data->width)
-		{
-			if (data->map->map[y][x] == '1')
-			{
-				i = 0;
-				while (i++ < block_size)
-					put_line_to_image(data->frame, \
-						create_ipoint(x * block_size + offset, y * \
-							block_size + i - 1 + offset), block_size, 0xccffff);
-			}
-			x++;
-		}
-		y++;
-	}
-	render_player_minimap(data, block_size, offset);
 }
 
 /**

@@ -6,7 +6,7 @@
 /*   By: splattje <splattje@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/09/24 13:31:27 by kschelvi      #+#    #+#                 */
-/*   Updated: 2024/10/28 15:23:03 by kschelvi      ########   odam.nl         */
+/*   Updated: 2024/11/04 11:41:18 by kschelvi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define SCREEN_WIDTH 2048
 # define SCREEN_HEIGHT 1280
 
-# define RAY_ANGLE_DELTA 0.125
+# define RAY_ANGLE_DELTA 0.0625
 # define FIELD_OF_VIEW	64
 
 # include "degree.h"
@@ -68,6 +68,9 @@ typedef struct s_ray
 // Frame functions
 int				build_frame(t_data *data);
 t_error			render_frame(t_data *data, t_ray *rays);
+
+// Minimap functions
+void			render_minimap(t_data *data);
 
 // Ray casting functions
 int				get_num_rays(void);
